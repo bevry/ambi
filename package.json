@@ -1,7 +1,7 @@
 {
 	"name": "ambi",
 	"version": "2.0.0",
-	"description": "Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Incredibly useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
+	"description": "Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
 	"homepage": "https://github.com/bevry/ambi",
 	"keywords": [
 		"sync","async","fire","exec","execute","ambidextrous"

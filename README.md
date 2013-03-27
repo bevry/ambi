@@ -1,6 +1,6 @@
 # Ambi [![Build Status](https://secure.travis-ci.org/bevry/ambi.png?branch=master)](http://travis-ci.org/bevry/ambi)
 Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions).
-Incredibly useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
+Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
 
 
 
