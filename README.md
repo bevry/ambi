@@ -19,37 +19,39 @@ Useful for treating synchronous functions as asynchronous functions (like suppor
 
 ## Usage
 
+### Example
+
 ``` javascript
 // Import
-var ambi = require('ambi')
-var result
+var ambi = require('ambi');
+var result;
 
 // Sample methods
 var syncMethod = function(x,y){
-	return x*y
-}
+	return x*y;
+};
 var asyncMethod = function(x,y,next){
 	return setTimeout(function(){
-		next(null,x*y)
-	},0)
-}
+		next(null,x*y);
+	},0);
+};
 
 // Call the synchronous function asynchronously
 result = ambi(syncMethod, 5, 2, function(err,result){ // ambi adds support for this asynchronous callback automatically
-	console.log(err, result) // null, 10
-})
-console.log(result) // 10 - just like normal
+	console.log(err, result); // null, 10
+});
+console.log(result); // 10 - just like normal
 
 // Call the asynchronous function asynchronously
 result = ambi(asyncMethod, 5, 2, function(err,result){ // ambi doesn't do anything special here
-	console.log(err, result) // null, 10
-})
-console.log(result) // setTimeout - just like normal
+	console.log(err, result); // null, 10
+});
+console.log(result); // setTimeout - just like normal
 ```
 
 
 
-## Process
+### Notes
 
 - Ambi accepts the arguments `(method, args...)`
 	- `method` is the function to execute
