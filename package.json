@@ -1,6 +1,6 @@
 {
 	"name": "ambi",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
 	"homepage": "https://github.com/bevry/ambi",
 	"keywords": [
@@ -21,15 +21,16 @@
 		"url": "http://github.com/bevry/ambi.git"
 	},
 	"engines" : {
-		"node": ">=0.4"
+		"node": ">=0.8"
 	},
 	"dependencies": {
 		"typechecker": "~2.0.1"
 	},
 	"devDependencies": {
 		"coffee-script": "~1.6.2",
-		"joe": "~1.1.2",
-		"chai": "~1.5.0"
+		"joe": "~1.2.0",
+		"joe-reporter-console": "~1.2.0",
+		"chai": "~1.7.2"
 	},
 	"directories": {
 		"lib": "./out/lib"
