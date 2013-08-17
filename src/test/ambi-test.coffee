@@ -64,17 +64,17 @@ joe.describe 'ambi', (describe,it) ->
 		totalChecks = 2
 
 		# Define the error to be used
-		err = new Error('my first error')
+		errMessage = 'my first error'
 
 		# Perform an error on a synchronous function
 		# by return
 		returnErrorSync = (x,y) ->
 			++executedChecks
-			return err
+			return new Error(errMessage)
 
 		# Test unsuccessful call
 		ambi returnErrorSync, 2, 5, (err,result) ->
-			expect(err, 'error to be set').to.eql(err)
+			expect(err.message, 'error to be set').to.eql(errMessage)
 			expect(result, 'result to be undefined').to.not.exist
 			++executedChecks
 
@@ -89,19 +89,19 @@ joe.describe 'ambi', (describe,it) ->
 		totalChecks = 2
 
 		# Define the error to be used
-		err = new Error('my first error')
+		errMessage = 'my first error'
 
 		# Perform an error on an asynchronous function
 		# by callback
 		callbackErrorAsync = (x,y,next) ->
 			wait delay, ->
-				next(err)
+				next(new Error(errMessage))
 				++executedChecks
 			return 'async'
 
 		# Test unsuccessful call
 		ambi callbackErrorAsync, 2, 5, (err,result) ->
-			expect(err, 'error to be set').to.eql(err)
+			expect(err.message, 'error to be set').to.eql(errMessage)
 			expect(result, 'result to be undefined').to.not.exist
 			++executedChecks
 
@@ -116,7 +116,7 @@ joe.describe 'ambi', (describe,it) ->
 		totalChecks = 2
 
 		# Define the error to be used
-		err = new Error('my first error')
+		errMessage = 'my first error'
 
 		# Perform an error on an asynchronous function
 		# by return
@@ -125,7 +125,7 @@ joe.describe 'ambi', (describe,it) ->
 			wait delay, ->
 				next(null, x*y)
 				++executedChecks
-			return err
+			return new Error(errMessage)
 
 		# Test successfull call
 		ambi returnErrorThenCompleteAsync, 2, 5, (err,result) ->
@@ -144,21 +144,21 @@ joe.describe 'ambi', (describe,it) ->
 		totalChecks = 2
 
 		# Define the error to be used
-		err = new Error('my first error')
-		err2 = new Error('my second error')
+		errMessage = 'my first error'
+		errMessage2 = 'my second error'
 
 		# Perform an error on an asynchronous function
 		# by return
 		# and never calling the callback
 		returnErrorThenCallbackErrorAsync = (x,y,next) ->
 			wait delay, ->
-				next(err2)
+				next(new Error(errMessage2))
 				++executedChecks
-			return err
+			return new Error(errMessage)
 
 		# Test unsuccessful error call
 		ambi returnErrorThenCallbackErrorAsync, 2, 5, (err,result) ->
-			expect(err, 'error to be set').to.eql(err2)
+			expect(err.message, 'error to be set').to.eql(errMessage2)
 			expect(result, 'result to be undefined').to.not.exist
 			++executedChecks
 
@@ -167,55 +167,81 @@ joe.describe 'ambi', (describe,it) ->
 			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
 			done()
 
-	it 'should handle thrown errors on unsuccessful synchronous functions', (done) ->
+	it 'should NOT handle thrown errors on unsuccessful synchronous functions', (done) ->
 		# Define the amount of special checks
 		executedChecks = 0
 		totalChecks = 2
+		neverReached = false
 
 		# Define the error to be used
-		err = new Error('my first error')
+		errMessage = 'my first error'
 
 		# Perform an error on a synchronous function
 		# by throw
-		throwErrorSync = (x,y) ->
+		throwErrorSyncUncaught = (x,y) ->
 			++executedChecks
-			throw err
+			throw new Error(errMessage)
+
+		# Error callback
+		catchUncaughtException = (err) ->
+			expect(err.message, 'error to be set').to.eql(errMessage)
+			++executedChecks
 
 		# Test unsuccessful call
-		ambi throwErrorSync, 2, 5, (err,result) ->
-			expect(err, 'error to be set').to.eql(err)
-			expect(result, 'result to be undefined').to.not.exist
-			++executedChecks
+		d = require('domain').create()
+		d.on('error', catchUncaughtException)
+		d.run ->
+			try
+				ambi throwErrorSyncUncaught, 2, 5, (err,result) ->
+					# should never reach here
+					++executedChecks
+					neverReached = true
+			catch err
+				catchUncaughtException(err)
 
 		# Check all the special checks passed
 		wait delay*2, ->
 			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			expect(neverReached, 'never reached section should have never been reached').to.eql(false)
 			done()
 
-	it 'should handle thrown errors on unsuccessful asynchronous functions', (done) ->
+	it 'should NOT handle thrown errors on unsuccessful asynchronous functions', (done) ->
 		# Define the amount of special checks
 		executedChecks = 0
 		totalChecks = 2
+		neverReached = false
 
 		# Define the error to be used
-		err = new Error('my first error')
+		errMessage = 'my first error'
 
 		# Perform an error on a synchronous function
 		# by throw
 		# and never calling the callback
-		throwErrorAsync = (x,y,next) ->
+		throwErrorAsyncUncaught = (x,y,next) ->
 			++executedChecks
-			throw err
+			throw new Error(errMessage)
+
+		# Error callback
+		catchUncaughtException = (err) ->
+			expect(err.message, 'error to be set').to.eql(errMessage)
+			++executedChecks
 
 		# Test unsuccessful call
-		ambi throwErrorAsync, 2, 5, (err,result) ->
-			expect(err, 'error to be set').to.eql(err)
-			expect(result, 'result to be undefined').to.not.exist
-			++executedChecks
+		d = require('domain').create()
+		d.on('error', catchUncaughtException)
+		d.run ->
+			try
+				ambi throwErrorAsyncUncaught, 2, 5, (err,result) ->
+					# should never reach here
+					++executedChecks
+					neverReached = true
+			catch err
+				catchUncaughtException(err)
 
 		# Check all the special checks passed
 		wait delay*2, ->
 			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			expect(neverReached, 'never reached section should have never been reached').to.eql(false)
 			done()
 
 	it 'should NOT handle asynchronous thrown errors on unsuccessful asynchronous functions', (done) ->
@@ -225,7 +251,7 @@ joe.describe 'ambi', (describe,it) ->
 		neverReached = false
 
 		# Define the error to be used
-		err = new Error('my first error')
+		errMessage = 'my first error'
 
 		# Perform an error on an asynchronous function
 		# by throw inside asynchronous function
@@ -233,19 +259,25 @@ joe.describe 'ambi', (describe,it) ->
 		throwErrorAsyncUncaught = (x,y,next) ->
 			wait delay, ->
 				++executedChecks
-				throw err
+				throw new Error(errMessage)
 			return 'async'
+
+		# Error callback
+		catchUncaughtException = (err) ->
+			expect(err.message, 'error to be set').to.eql(errMessage)
+			++executedChecks
 
 		# Test unsuccessful call
 		d = require('domain').create()
-		d.on 'error', (err) ->
-			expect(err, 'error to be set').to.eql(err)
-			++executedChecks
+		d.on('error', catchUncaughtException)
 		d.run ->
-			ambi throwErrorAsyncUncaught, 2, 5, (err,result) ->
-				# should never reach here
-				++executedChecks
-				neverReached = true
+			try
+				ambi throwErrorAsyncUncaught, 2, 5, (err,result) ->
+					# should never reach here
+					++executedChecks
+					neverReached = true
+			catch err
+				catchUncaughtException(err)
 
 		# Check all the special checks passed
 		wait delay*2, ->

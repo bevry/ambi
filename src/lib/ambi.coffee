@@ -29,22 +29,14 @@ ambi = (method, args...) ->
 	# Asynchronous method
 	# Only call the completion callback if an error occurs as the fire method should fire the completion callback itself if all goes well
 	if isAsynchronousMethod
-		# Fire the method and catch errors
-		try
-			fireMethod.apply(null, args)
-		catch err
-			# an error was caught so fire the completion callback with the error
-			err = result
-			completionCallback(err)
+		# Fire the method
+		fireMethod.apply(null, args)
 
 	# Synchronous method
 	# Always call the completion callback ourselves as the fire method does not make use of it
 	else
-		# Fire the method and catch errors
-		try
-			result = fireMethod.apply(null, args)
-		catch err
-			result = err
+		# Fire the method and check for returned errors
+		result = fireMethod.apply(null, args)
 
 		# Check the result for a returned error
 		if typeChecker.isError(result)
