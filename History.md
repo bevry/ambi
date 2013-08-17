@@ -1,5 +1,12 @@
 ## History
 
+- v2.1.0 August 16, 2013
+	- ambi will now always return `null` for consistency
+		- as return values are only possible with synchronous methods
+	- ambi will ignore returned errors on asynchronous functions
+		- asynchronous errors must now give the error via the completion callback
+		- this is to avoid the possibility of the completion callback being called twice (once for the returned error via ambi, once via your application)
+
 - v2.0.0 March 27, 2013
 	- Split away from bal-util
 
