@@ -188,16 +188,13 @@ joe.describe 'ambi', (describe,it) ->
 			++executedChecks
 
 		# Test unsuccessful call
-		d = require('domain').create()
-		d.on('error', catchUncaughtException)
-		d.run ->
-			try
-				ambi throwErrorSyncUncaught, 2, 5, (err,result) ->
-					# should never reach here
-					++executedChecks
-					neverReached = true
-			catch err
-				catchUncaughtException(err)
+		try
+			ambi throwErrorSyncUncaught, 2, 5, (err,result) ->
+				# should never reach here
+				++executedChecks
+				neverReached = true
+		catch err
+			catchUncaughtException(err)
 
 		# Check all the special checks passed
 		wait delay*2, ->
@@ -227,16 +224,13 @@ joe.describe 'ambi', (describe,it) ->
 			++executedChecks
 
 		# Test unsuccessful call
-		d = require('domain').create()
-		d.on('error', catchUncaughtException)
-		d.run ->
-			try
-				ambi throwErrorAsyncUncaught, 2, 5, (err,result) ->
-					# should never reach here
-					++executedChecks
-					neverReached = true
-			catch err
-				catchUncaughtException(err)
+		try
+			ambi throwErrorAsyncUncaught, 2, 5, (err,result) ->
+				# should never reach here
+				++executedChecks
+				neverReached = true
+		catch err
+			catchUncaughtException(err)
 
 		# Check all the special checks passed
 		wait delay*2, ->
@@ -245,6 +239,11 @@ joe.describe 'ambi', (describe,it) ->
 			done()
 
 	it 'should NOT handle asynchronous thrown errors on unsuccessful asynchronous functions', (done) ->
+		# Check node version
+		if process.versions.node.substr(0,3) is '0.8'
+			console.log 'skip this test on node 0.8 because domains behave differently'
+			return done()
+
 		# Define the amount of special checks
 		executedChecks = 0
 		totalChecks = 2
