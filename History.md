@@ -1,5 +1,8 @@
 ## History
 
+- v2.1.1 August 19, 2013
+	- Republish with older verson of joe dev dependency to try and stop cyclic errors
+
 - v2.1.0 August 19, 2013
 	- will now always return `null` for consistency
 		- as return values are only possible with synchronous methods
