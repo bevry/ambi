@@ -1,5 +1,8 @@
 ## History
 
+- v2.1.2 September 18, 2013
+	- Component.io support
+
 - v2.1.1 August 19, 2013
 	- Republish with older verson of joe dev dependency to try and stop cyclic errors
 
