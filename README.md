@@ -13,7 +13,7 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 
 ### [Node](http://nodejs.org/), [Browserify](http://browserify.org/)
 - Use: `require('ambi')`
-- Install: 'npm install --save ambi'
+- Install: `npm install --save ambi`
 
 ### [Ender](http://ender.jit.su/)
 - Use: `require('ambi')`
