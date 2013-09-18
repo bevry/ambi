@@ -1,5 +1,8 @@
 ## History
 
+- v2.1.3 September 28, 2013
+	- Attempt at fixing circular dependency infinite loop introduced in v2.1.2
+
 - v2.1.2 September 18, 2013
 	- Component.io support
 
