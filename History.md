@@ -1,10 +1,14 @@
 ## History
 
-- v2.1.3 September 28, 2013
-	- Attempt at fixing circular dependency infinite loop introduced in v2.1.2
+- v2.1.4 September 18, 2013
+	- Fixed cyclic dependency problem on windows (since v2.1.3)
+	- Added bower support
+
+- v2.1.3 September 18, 2013
+	- Attempt at fixing circular dependency infinite loop (since v2.1.2)
 
 - v2.1.2 September 18, 2013
-	- Component.io support
+	- Added component.io support
 
 - v2.1.1 August 19, 2013
 	- Republish with older verson of joe dev dependency to try and stop cyclic errors
