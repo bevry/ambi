@@ -1,5 +1,8 @@
 ## History
 
+- v2.1.5 October 27, 2013
+	- Re-packaged
+
 - v2.1.4 September 18, 2013
 	- Fixed cyclic dependency problem on windows (since v2.1.3)
 	- Added bower support

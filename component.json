@@ -2,7 +2,7 @@
   "name": "ambi",
   "repo": "bevry/ambi",
   "description": "Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "keywords": [
     "sync",
     "async",
@@ -17,8 +17,9 @@
   },
   "development": {},
   "license": "MIT",
-  "main": "out/lib/ambi.js",
+  "main": "./out/lib/ambi.js",
   "scripts": [
-    "out/lib/ambi.js"
-  ]
+    "./out/lib/ambi.js"
+  ],
+  "demo": "https://github.com/bevry/ambi"
 }

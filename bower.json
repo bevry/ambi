@@ -1,7 +1,7 @@
 {
   "name": "ambi",
-  "main": "out/lib/ambi.js",
-  "version": "2.1.4",
+  "main": "./out/lib/ambi.js",
+  "version": "2.1.5",
   "homepage": "https://github.com/bevry/ambi",
   "authors": [
     "Benjamin Lupton <b@lupton.cc>"
@@ -25,6 +25,13 @@
     "tests"
   ],
   "dependencies": {
-    "typechecker": "~2.0.6"
+    "typechecker": "~2.0.7"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.2",
+    "joe": "~1.3.0",
+    "joe-reporter-console": "~1.2.0",
+    "chai": "~1.8.1",
+    "projectz": "~0.2.3"
   }
 }
