@@ -36,14 +36,6 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 - Use: `require('ambi')`
 - Install: `ender add ambi`
 
-### [Component](http://github.com/component/component)
-- Use: `require('ambi')`
-- Install: `component install bevry/ambi`
-
-### [Bower](http://bower.io/)
-- Use: `require('ambi')`
-- Install: `bower install ambi`
-
 <!-- /INSTALL -->
 
 
@@ -149,7 +141,8 @@ These amazing people have contributed code to this project:
 
 Licensed under the incredibly [permissive](http://en.wikipedia.org/wiki/Permissive_free_software_licence) [MIT license](http://creativecommons.org/licenses/MIT/)
 
-Copyright &copy; Benjamin Lupton <b@lupton.cc>
+Copyright &copy; 2013+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)
+<br/>Copyright &copy; 2011-2012 Benjamin Lupton <b@lupton.cc> (http://balupton.com)
 
 <!-- /LICENSE -->
 

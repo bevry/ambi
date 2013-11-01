@@ -1,7 +1,7 @@
 {
   "title": "Ambi",
   "name": "ambi",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
   "homepage": "https://github.com/bevry/ambi",
   "license": {
@@ -23,7 +23,7 @@
     "ambidextrous",
     "flow"
   ],
-  "author": "Benjamin Lupton <b@lupton.cc>",
+  "author": "2013+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me), 2011-2012 Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
