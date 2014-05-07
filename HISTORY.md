@@ -1,4 +1,8 @@
-## History
+# History
+
+- v2.2.0 May 7, 2013
+	- We no longer send the completion callback to functions executing synchronously
+	- We now support optional arguments for functions executing asynchronously
 
 - v2.1.6 November 1, 2013
 	- Dropped component.io and bower support, just use ender or browserify

@@ -9,10 +9,14 @@
 <!-- BADGES/ -->
 
 [![Build Status](http://img.shields.io/travis-ci/bevry/ambi.png?branch=master)](http://travis-ci.org/bevry/ambi "Check this project's build status on TravisCI")
-[![NPM version](https://badge.fury.io/js/ambi.png)](https://npmjs.org/package/ambi "View this project on NPM")
+[![NPM version](http://badge.fury.io/js/ambi.png)](https://npmjs.org/package/ambi "View this project on NPM")
+[![Dependency Status](https://david-dm.org/bevry/ambi.png?theme=shields.io)](https://david-dm.org/bevry/ambi)
+[![Development Dependency Status](https://david-dm.org/bevry/ambi/dev-status.png?theme=shields.io)](https://david-dm.org/bevry/ambi#info=devDependencies)<br/>
 [![Gittip donate button](http://img.shields.io/gittip/bevry.png)](https://www.gittip.com/bevry/ "Donate weekly to this project using Gittip")
-[![Flattr donate button](https://raw.github.com/balupton/flattr-buttons/master/badge-89x18.gif)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
-[![PayPayl donate button](https://www.paypalobjects.com/en_AU/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
+[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
+[![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
+[![BitCoin donate button](http://img.shields.io/bitcoin/donate.png?color=yellow)](https://coinbase.com/checkouts/9ef59f5479eec1d97d63382c9ebcb93a "Donate once-off to this project using BitCoin")
+[![Wishlist browse button](http://img.shields.io/wishlist/browse.png?color=yellow)](http://amzn.com/w/2F8TXKSNAFG4V "Buy an item on our wishlist for us")
 
 <!-- /BADGES -->
 
@@ -28,13 +32,9 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 
 ## Install
 
-### [Node](http://nodejs.org/), [Browserify](http://browserify.org/)
+### [NPM](http://npmjs.org/)
 - Use: `require('ambi')`
 - Install: `npm install --save ambi`
-
-### [Ender](http://ender.jit.su/)
-- Use: `require('ambi')`
-- Install: `ender add ambi`
 
 <!-- /INSTALL -->
 
@@ -80,18 +80,17 @@ console.log(result); // setTimeout - just like normal
 	- `args...` is the arguments to send to the method
 		- the last argument is expected to be the completion callback
 		- the completion callback is optional, but if defined, is expected to have the signature of `(err, results...)`
-- If the method has the same amount of arguments as those ambi received, then we assume it is an asynchronous method and let it handle calling of the completion callback itself
-- If the method does not have the same amount of arguments as those ambi received, then we assume it is a synchronous method and we'll call the completion callback ourselves
+- If the method has equal or more arguments than ambi received, then we assume it is an asynchronous method and let it handle calling of the completion callback itself
+- If the method has less arguments than ambi received, then we assume it is a synchronous method and we'll call the completion callback ourselves
 	- If the synchronous method throws an error or returns an error, we'll try to call the completion callback with a single `err` argument
 	- If the synchronous method executes without error, we'll try to call the completion callback with a `err` argument equal to null, and a `result` argument equal to the returned result of the synchronous method
 - Ambi can also introspect a different method than the one it fires, by passing `[methodToFire, methodToIntrospect]` as the `method` argument
 
 
-
 <!-- HISTORY/ -->
 
 ## History
-[Discover the change history by heading on over to the `History.md` file.](https://github.com/bevry/ambi/blob/master/History.md#files)
+[Discover the change history by heading on over to the `HISTORY.md` file.](https://github.com/bevry/ambi/blob/master/HISTORY.md#files)
 
 <!-- /HISTORY -->
 
@@ -100,7 +99,7 @@ console.log(result); // setTimeout - just like normal
 
 ## Contribute
 
-[Discover how you can contribute by heading on over to the `Contributing.md` file.](https://github.com/bevry/ambi/blob/master/Contributing.md#files)
+[Discover how you can contribute by heading on over to the `CONTRIBUTING.md` file.](https://github.com/bevry/ambi/blob/master/CONTRIBUTING.md#files)
 
 <!-- /CONTRIBUTE -->
 
@@ -120,17 +119,19 @@ These amazing people are maintaining this project:
 No sponsors yet! Will you be the first?
 
 [![Gittip donate button](http://img.shields.io/gittip/bevry.png)](https://www.gittip.com/bevry/ "Donate weekly to this project using Gittip")
-[![Flattr donate button](https://raw.github.com/balupton/flattr-buttons/master/badge-89x18.gif)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
-[![PayPayl donate button](https://www.paypalobjects.com/en_AU/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
+[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
+[![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
+[![BitCoin donate button](http://img.shields.io/bitcoin/donate.png?color=yellow)](https://coinbase.com/checkouts/9ef59f5479eec1d97d63382c9ebcb93a "Donate once-off to this project using BitCoin")
+[![Wishlist browse button](http://img.shields.io/wishlist/browse.png?color=yellow)](http://amzn.com/w/2F8TXKSNAFG4V "Buy an item on our wishlist for us")
 
 ### Contributors
 
 These amazing people have contributed code to this project:
 
-- Benjamin Lupton <b@lupton.cc> (https://github.com/balupton) - [view contributions](https://github.com/bevry/ambi/commits?author=balupton)
-- sfrdmn (https://github.com/sfrdmn) - [view contributions](https://github.com/bevry/ambi/commits?author=sfrdmn)
+- [Benjamin Lupton](https://github.com/balupton) <b@lupton.cc> — [view contributions](https://github.com/bevry/ambi/commits?author=balupton)
+- [sfrdmn](https://github.com/sfrdmn) — [view contributions](https://github.com/bevry/ambi/commits?author=sfrdmn)
 
-[Become a contributor!](https://github.com/bevry/ambi/blob/master/Contributing.md#files)
+[Become a contributor!](https://github.com/bevry/ambi/blob/master/CONTRIBUTING.md#files)
 
 <!-- /BACKERS -->
 

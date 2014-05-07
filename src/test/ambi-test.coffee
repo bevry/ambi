@@ -20,6 +20,7 @@ joe.describe 'ambi', (describe,it) ->
 		# Perform multiply on a synchronous function
 		# by return
 		multiplySync = (x,y) ->
+			expect(arguments.length).to.eql(2)
 			++executedChecks
 			return x*y
 
@@ -51,6 +52,34 @@ joe.describe 'ambi', (describe,it) ->
 		ambi multiplyAsync, 2, 5, (err,result) ->
 			expect(err, 'error to be null').to.eql(null)
 			expect(result, 'result to be set').to.eql(10)
+			++executedChecks
+
+		# Check all the special checks passed
+		wait delay*2, ->
+			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			done()
+
+	it 'should handle result on successful asynchronous function with optional arguments', (done) ->
+		# Define the amount of special checks
+		executedChecks = 0
+		totalChecks = 2
+
+		# Perform multiply on an asynchronous function
+		# by callback
+		multiplyAsync = (x,y,next) ->
+			expect(typeof x).to.eql('undefined')
+			expect(typeof y).to.eql('undefined')
+			x or= 3
+			y or= 5
+			wait delay, ->
+				next(null, x*y)
+				++executedChecks
+			return 'async'
+
+		# Test successful call
+		ambi multiplyAsync, (err,result) ->
+			expect(err, 'error to be null').to.eql(null)
+			expect(result, 'result to be set').to.eql(15)
 			++executedChecks
 
 		# Check all the special checks passed
