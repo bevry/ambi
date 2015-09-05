@@ -89,7 +89,7 @@ console.log(result)  // setTimeout - just like normal
 
 - Ambi accepts the arguments `(method, ...args)`
 	- `method` is the function to execute
-	- `args...` is the arguments to send to the method
+	- `...args` is the arguments to send to the method
 		- the last argument is expected to be the completion callback
 		- the completion callback is optional, but if defined, is expected to have the signature of `(err, ...results)`
 - If the method has equal or more arguments than ambi received, then we assume it is an asynchronous method and let it handle calling of the completion callback itself
