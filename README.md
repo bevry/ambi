@@ -60,7 +60,7 @@ let result = null
 
 // Sample methods
 function syncMethod (x, y) {
-	return x*y
+	return x * y
 }
 function asyncMethod (x, y, next) {
 	return setTimeout(function () {
