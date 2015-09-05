@@ -55,41 +55,43 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 
 ``` javascript
 // Import
-var ambi = require('ambi');
-var result;
+const ambi = require('ambi')
+let result = null
 
 // Sample methods
-var syncMethod = function(x,y){
-	return x*y;
-};
-var asyncMethod = function(x,y,next){
-	return setTimeout(function(){
-		next(null,x*y);
-	},0);
-};
+function syncMethod (x, y) {
+	return x*y
+}
+function asyncMethod (x, y, next) {
+	return setTimeout(function () {
+		next(null, x * y)
+	}, 0)
+}
 
 // Call the synchronous function asynchronously
-result = ambi(syncMethod, 5, 2, function(err,result){ // ambi adds support for this asynchronous callback automatically
-	console.log(err, result); // null, 10
-});
-console.log(result); // 10 - just like normal
+// ambi adds support for this asynchronous callback automatically
+result = ambi(syncMethod, 5, 2, function(err, result) {
+	console.log(err, result)  // null, 10
+})
+console.log(result)  // 10 - just like normal
 
 // Call the asynchronous function asynchronously
-result = ambi(asyncMethod, 5, 2, function(err,result){ // ambi doesn't do anything special here
-	console.log(err, result); // null, 10
-});
-console.log(result); // setTimeout - just like normal
+// ambi doesn't do anything special here
+result = ambi(asyncMethod, 5, 2, function (err, result) {
+	console.log(err, result)  // null, 10
+})
+console.log(result)  // setTimeout - just like normal
 ```
 
 
 
 ### Notes
 
-- Ambi accepts the arguments `(method, args...)`
+- Ambi accepts the arguments `(method, ...args)`
 	- `method` is the function to execute
 	- `args...` is the arguments to send to the method
 		- the last argument is expected to be the completion callback
-		- the completion callback is optional, but if defined, is expected to have the signature of `(err, results...)`
+		- the completion callback is optional, but if defined, is expected to have the signature of `(err, ...results)`
 - If the method has equal or more arguments than ambi received, then we assume it is an asynchronous method and let it handle calling of the completion callback itself
 - If the method has less arguments than ambi received, then we assume it is a synchronous method and we'll call the completion callback ourselves
 	- If the synchronous method throws an error or returns an error, we'll try to call the completion callback with a single `err` argument
@@ -160,5 +162,3 @@ and licensed under:
 - The incredibly [permissive](http://en.wikipedia.org/wiki/Permissive_free_software_licence) [MIT License](http://opensource.org/licenses/mit-license.php)
 
 <!-- /LICENSE -->
-
-
