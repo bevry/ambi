@@ -1,5 +1,9 @@
 # History
 
+# v2.4.0 December 9, 2015
+- Dropped Node 0.10 support, minimum node version supported is now 0.12
+- Updated dependencies
+
 # v2.3.0 September 5, 2015
 - Moved from CoffeeScript to ES6+
 - Removed `cyclic.js` as it should no longer be needed

@@ -1,7 +1,9 @@
-/* eslint no-unused-expressions:0 handle-callback-err:0 */
+// The below eslint rules are disabled as they are more around how our tests are formatted
+/* eslint no-magic-numbers:0, no-unused-vars:0, handle-callback-err:0, no-console:0 */
+'use strict'
 
 // Import
-const {expect} = require('chai')
+const {equal} = require('assert-helpers')
 const joe = require('joe')
 const ambi = require('../../')
 
@@ -24,21 +26,21 @@ joe.describe('ambi', function (describe, it) {
 		// Perform multiply on a synchronous function
 		// by return
 		function multiplySync (x, y) {
-			expect(arguments.length).to.eql(2)
+			equal(arguments.length, 2, 'arguments length')
 			++executedChecks
 			return x * y
 		}
 
 		// Test successful call
 		ambi(multiplySync, 2, 5, function (err, result) {
-			expect(err, 'error to be null').to.eql(null)
-			expect(result, 'result to be set').to.eql(10)
+			equal(err, null, 'error to be null')
+			equal(result, 10, 'result to be set')
 			++executedChecks
 		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
 			done()
 		})
 	})
@@ -60,14 +62,14 @@ joe.describe('ambi', function (describe, it) {
 
 		// Test successful call
 		ambi(multiplyAsync, 2, 5, function (err, result) {
-			expect(err, 'error to be null').to.eql(null)
-			expect(result, 'result to be set').to.eql(10)
+			equal(err, null, 'error to be null')
+			equal(result, 10, 'result to be set')
 			++executedChecks
 		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
 			done()
 		})
 	})
@@ -80,8 +82,8 @@ joe.describe('ambi', function (describe, it) {
 		// Perform multiply on an asynchronous function
 		// by callback
 		function multiplyAsync (x, y, next) {
-			expect(typeof x).to.eql('undefined')
-			expect(typeof y).to.eql('undefined')
+			equal(typeof x, 'undefined', 'x to be undefined')
+			equal(typeof y, 'undefined', 'y to be undefined')
 			x = x || 3
 			y = y || 5
 			wait(delay, function () {
@@ -93,14 +95,14 @@ joe.describe('ambi', function (describe, it) {
 
 		// Test successful call
 		ambi(multiplyAsync, function (err, result) {
-			expect(err, 'error to be null').to.eql(null)
-			expect(result, 'result to be set').to.eql(15)
+			equal(err, null, 'error to be null')
+			equal(result, 15, 'result to be set')
 			++executedChecks
 		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
 			done()
 		})
 	})
@@ -122,14 +124,14 @@ joe.describe('ambi', function (describe, it) {
 
 		// Test unsuccessful call
 		ambi(returnErrorSync, 2, 5, function (err, result) {
-			expect(err.message, 'error to be set').to.eql(errMessage)
-			expect(result, 'result to be undefined').to.not.exist
+			equal(err.message, errMessage, 'error to be set')
+			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
 		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
 			done()
 		})
 	})
@@ -154,14 +156,14 @@ joe.describe('ambi', function (describe, it) {
 
 		// Test unsuccessful call
 		ambi(callbackErrorAsync, 2, 5, function (err, result) {
-			expect(err.message, 'error to be set').to.eql(errMessage)
-			expect(result, 'result to be undefined').to.not.exist
+			equal(err.message, errMessage, 'error to be set')
+			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
 		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
 			done()
 		})
 	})
@@ -187,14 +189,14 @@ joe.describe('ambi', function (describe, it) {
 
 		// Test successfull call
 		ambi(returnErrorThenCompleteAsync, 2, 5, function (err, result) {
-			expect(err, 'error to be null').to.eql(null)
-			expect(result, 'result to be set').to.eql(10)
+			equal(err, null, 'error to be null')
+			equal(result, 10, 'result to be set')
 			++executedChecks
 		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
 			done()
 		})
 	})
@@ -221,14 +223,14 @@ joe.describe('ambi', function (describe, it) {
 
 		// Test unsuccessful error call
 		ambi(returnErrorThenCallbackErrorAsync, 2, 5, function (err, result) {
-			expect(err.message, 'error to be set').to.eql(errMessage2)
-			expect(result, 'result to be undefined').to.not.exist
+			equal(err.message, errMessage2, 'error to be set')
+			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
 		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
 			done()
 		})
 	})
@@ -251,7 +253,7 @@ joe.describe('ambi', function (describe, it) {
 
 		// Error callback
 		function catchUncaughtException (err) {
-			expect(err.message, 'error to be set').to.eql(errMessage)
+			equal(err.message, errMessage, 'error to be set')
 			++executedChecks
 		}
 
@@ -269,8 +271,8 @@ joe.describe('ambi', function (describe, it) {
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
-			expect(neverReached, 'never reached section should have never been reached').to.eql(false)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
+			equal(neverReached, false, 'never reached section should have never been reached')
 			done()
 		})
 	})
@@ -294,7 +296,7 @@ joe.describe('ambi', function (describe, it) {
 
 		// Error callback
 		function catchUncaughtException (err) {
-			expect(err.message, 'error to be set').to.eql(errMessage)
+			equal(err.message, errMessage, 'error to be set')
 			++executedChecks
 		}
 
@@ -312,8 +314,8 @@ joe.describe('ambi', function (describe, it) {
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
-			expect(neverReached, 'never reached section should have never been reached').to.eql(false)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
+			equal(neverReached, false, 'never reached section should have never been reached')
 			done()
 		})
 	})
@@ -346,7 +348,7 @@ joe.describe('ambi', function (describe, it) {
 
 		// Error callback
 		function catchUncaughtException (err) {
-			expect(err.message, 'error to be set').to.eql(errMessage)
+			equal(err.message, errMessage, 'error to be set')
 			++executedChecks
 		}
 
@@ -368,8 +370,8 @@ joe.describe('ambi', function (describe, it) {
 
 		// Check all the special checks passed
 		wait(delay * 2, function () {
-			expect(executedChecks, 'special checks were as expected').to.eql(totalChecks)
-			expect(neverReached, 'never reached section should have never been reached').to.eql(false)
+			equal(executedChecks, totalChecks, 'special checks were as expected')
+			equal(neverReached, false, 'never reached section should have never been reached')
 			done()
 		})
 	})

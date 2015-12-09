@@ -1,8 +1,10 @@
+'use strict'
+
 // Import
 const typeChecker = require('typechecker')
 
 // Define
-export default function ambi (method, ...args) {
+module.exports = function ambi (method, ...args) {
 	// Prepare
 	let fireMethod, introspectMethod
 
@@ -81,14 +83,14 @@ export default function ambi (method, ...args) {
 	// Execute with the exceptation that the method will fire the completion callback itself
 	if ( executeAsynchronously ) {
 		// Fire the method
-		fireMethod.apply(null, args)
+		fireMethod(...args)
 	}
 
 	// Execute with the expectation that we will need to fire the completion callback ourselves
 	// Always call the completion callback ourselves as the fire method does not make use of it
 	else {
 		// Fire the method and check for returned errors
-		const result = fireMethod.apply(null, args)
+		const result = fireMethod(...args)
 
 		// Check the result for a returned error
 		if ( typeChecker.isError(result) ) {
