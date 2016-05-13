@@ -1,5 +1,10 @@
 # History
 
+# v2.5.0 2016 May 14
+- No code changes in this release, just updated packaging
+- Now uses [Editions](https://github.com/bevry/editions) instead of [ESNextGuardian](https://github.com/bevry/esnextguardian)
+- Update dependencies
+
 # v2.4.0 2015 December 9
 - Dropped Node 0.10 support, minimum node version supported is now 0.12
 - Updated dependencies

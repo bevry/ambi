@@ -1,11 +1,10 @@
 // The below eslint rules are disabled as they are more around how our tests are formatted
-/* eslint no-magic-numbers:0, no-unused-vars:0, handle-callback-err:0, no-console:0 */
-'use strict'
+/* eslint no-magic-numbers:0, no-unused-vars:0, handle-callback-err:0, no-console:0, prefer-rest-params:0 */
 
 // Import
 const {equal} = require('assert-helpers')
 const joe = require('joe')
-const ambi = require('../../')
+const ambi = require('../')
 
 // Prepare
 function wait (delay, fn) {

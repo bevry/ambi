@@ -1,5 +1,3 @@
-'use strict'
-
 // Import
 const typeChecker = require('typechecker')
 
