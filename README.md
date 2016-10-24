@@ -82,7 +82,7 @@ function asyncMethod (x, y, next) {
 
 // Call the synchronous function asynchronously
 // ambi adds support for this asynchronous callback automatically
-result = ambi(syncMethod, 5, 2, function(err, result) {
+result = ambi(syncMethod, 5, 2, function (err, result) {
 	console.log(err, result)  // null, 10
 })
 console.log(result)  // 10 - just like normal
