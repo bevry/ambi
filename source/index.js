@@ -1,27 +1,16 @@
+'use strict'
+
 // Import
 const typeChecker = require('typechecker')
 
 // Define
 module.exports = function ambi (method, ...args) {
-	// Prepare
-	let fireMethod, introspectMethod
-
-	// If binding has occured then make sure we are introspecting the write method
-	// by allowing the user to pass method as an array of two methods
-	// the method to fire, and the method to introspect
-	if ( typeChecker.isArray(method) ) {
-		[fireMethod, introspectMethod] = method
-	}
-	else {
-		fireMethod = introspectMethod = method
-	}
-
 	// Extract the preceeding arguments and the completion callback
 	const simpleArguments = args.slice(0, -1)
 	const completionCallback = args.slice(-1)[0]
 
 	// Check the completion callback is actually a function
-	if ( !typeChecker.isFunction(completionCallback) ) {
+	if (!typeChecker.isFunction(completionCallback)) {
 		throw new Error('ambi was called without a completion callback')
 	}
 
@@ -46,14 +35,15 @@ module.exports = function ambi (method, ...args) {
 		> if they want to use optional args, the function must accept a completion callback
 	*/
 	const givenArgumentsLength = args.length
-	const acceptedArgumentsLength = introspectMethod.length
+	// https://github.com/bevry/unbounded
+	const acceptedArgumentsLength = (method.unbounded || method).length
 	let argumentsDifferenceLength = null
 	let executeAsynchronously = null
 
 	// Given arguments are SAME as the expected arguments
 	// This will execute asynchronously
 	// Don't have to do anything with the arguments
-	if ( givenArgumentsLength === acceptedArgumentsLength ) {
+	if (givenArgumentsLength === acceptedArgumentsLength) {
 		executeAsynchronously = true
 	}
 
@@ -61,7 +51,7 @@ module.exports = function ambi (method, ...args) {
 	// This will execute asynchronously
 	// We will need to supplement any missing expected arguments with undefined
 	// to ensure the compeltion callback is in the right place in the arguments listing
-	else if ( givenArgumentsLength < acceptedArgumentsLength ) {
+	else if (givenArgumentsLength < acceptedArgumentsLength) {
 		executeAsynchronously = true
 		argumentsDifferenceLength = acceptedArgumentsLength - givenArgumentsLength
 		args = simpleArguments.slice().concat(new Array(argumentsDifferenceLength)).concat([completionCallback])
@@ -79,19 +69,19 @@ module.exports = function ambi (method, ...args) {
 	}
 
 	// Execute with the exceptation that the method will fire the completion callback itself
-	if ( executeAsynchronously ) {
+	if (executeAsynchronously) {
 		// Fire the method
-		fireMethod(...args)
+		method(...args)
 	}
 
 	// Execute with the expectation that we will need to fire the completion callback ourselves
 	// Always call the completion callback ourselves as the fire method does not make use of it
 	else {
 		// Fire the method and check for returned errors
-		const result = fireMethod(...args)
+		const result = method(...args)
 
 		// Check the result for a returned error
-		if ( typeChecker.isError(result) ) {
+		if (typeChecker.isError(result)) {
 			// An error was returned so fire the completion callback with the error
 			const err = result
 			completionCallback(err)

@@ -1,8 +1,10 @@
+'use strict'
+
 // The below eslint rules are disabled as they are more around how our tests are formatted
 /* eslint no-magic-numbers:0, no-unused-vars:0, handle-callback-err:0, no-console:0, prefer-rest-params:0 */
 
 // Import
-const {equal} = require('assert-helpers')
+const { equal } = require('assert-helpers')
 const joe = require('joe')
 const ambi = require('../')
 
@@ -264,7 +266,7 @@ joe.describe('ambi', function (describe, it) {
 				neverReached = true
 			})
 		}
-		catch ( err ) {
+		catch (err) {
 			catchUncaughtException(err)
 		}
 
@@ -307,7 +309,7 @@ joe.describe('ambi', function (describe, it) {
 				neverReached = true
 			})
 		}
-		catch ( err ) {
+		catch (err) {
 			catchUncaughtException(err)
 		}
 
@@ -321,7 +323,7 @@ joe.describe('ambi', function (describe, it) {
 
 	it('should NOT handle asynchronous thrown errors on unsuccessful asynchronous functions', function (done) {
 		// Check node version
-		if ( process.versions.node.substr(0, 3) === '0.8' ) {
+		if (process.versions.node.substr(0, 3) === '0.8') {
 			console.log('skip this test on node 0.8 because domains behave differently')
 			return done()
 		}
@@ -362,7 +364,7 @@ joe.describe('ambi', function (describe, it) {
 					neverReached = true
 				})
 			}
-			catch ( err ) {
+			catch (err) {
 				catchUncaughtException(err)
 			}
 		})

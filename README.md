@@ -13,13 +13,14 @@
 <span class="badge-daviddm"><a href="https://david-dm.org/bevry/ambi" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/bevry/ambi.svg" alt="Dependency Status" /></a></span>
 <span class="badge-daviddmdev"><a href="https://david-dm.org/bevry/ambi#info=devDependencies" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/bevry/ambi.svg" alt="Dev Dependency Status" /></a></span>
 <br class="badge-separator" />
-<span class="badge-slackin"><a href="https://slack.bevry.me" title="Join this project's slack community"><img src="https://slack.bevry.me/badge.svg" alt="Slack community badge" /></a></span>
-<span class="badge-patreon"><a href="http://patreon.com/bevry" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a></span>
-<span class="badge-gratipay"><a href="https://www.gratipay.com/bevry" title="Donate weekly to this project using Gratipay"><img src="https://img.shields.io/badge/gratipay-donate-yellow.svg" alt="Gratipay donate button" /></a></span>
+<span class="badge-patreon"><a href="https://patreon.com/bevry" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a></span>
+<span class="badge-opencollective"><a href="https://opencollective.com/bevry" title="Donate to this project using Open Collective"><img src="https://img.shields.io/badge/open%20collective-donate-yellow.svg" alt="Open Collective donate button" /></a></span>
 <span class="badge-flattr"><a href="https://flattr.com/profile/balupton" title="Donate to this project using Flattr"><img src="https://img.shields.io/badge/flattr-donate-yellow.svg" alt="Flattr donate button" /></a></span>
 <span class="badge-paypal"><a href="https://bevry.me/paypal" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
 <span class="badge-bitcoin"><a href="https://bevry.me/bitcoin" title="Donate once-off to this project using Bitcoin"><img src="https://img.shields.io/badge/bitcoin-donate-yellow.svg" alt="Bitcoin donate button" /></a></span>
 <span class="badge-wishlist"><a href="https://bevry.me/wishlist" title="Buy an item on our wishlist for us"><img src="https://img.shields.io/badge/wishlist-donate-yellow.svg" alt="Wishlist browse button" /></a></span>
+<br class="badge-separator" />
+<span class="badge-slackin"><a href="https://slack.bevry.me" title="Join this project's slack community"><img src="https://slack.bevry.me/badge.svg" alt="Slack community badge" /></a></span>
 
 <!-- /BADGES -->
 
@@ -42,7 +43,7 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 <a href="http://browserify.org" title="Browserify lets you require('modules') in the browser by bundling up all of your dependencies"><h3>Browserify</h3></a><ul>
 <li>Install: <code>npm install --save ambi</code></li>
 <li>Module: <code>require('ambi')</code></li>
-<li>CDN URL: <code>//wzrd.in/bundle/ambi@2.5.0</code></li></ul>
+<li>CDN URL: <code>//wzrd.in/bundle/ambi@3.0.0</code></li></ul>
 
 <a href="http://enderjs.com" title="Ender is a full featured package manager for your browser"><h3>Ender</h3></a><ul>
 <li>Install: <code>ender add ambi</code></li>
@@ -72,25 +73,25 @@ let result = null
 
 // Sample methods
 function syncMethod (x, y) {
-	return x * y
+    return x * y
 }
 function asyncMethod (x, y, next) {
-	return setTimeout(function () {
-		next(null, x * y)
-	}, 0)
+    return setTimeout(function () {
+        next(null, x * y)
+    }, 0)
 }
 
 // Call the synchronous function asynchronously
 // ambi adds support for this asynchronous callback automatically
 result = ambi(syncMethod, 5, 2, function (err, result) {
-	console.log(err, result)  // null, 10
+    console.log(err, result)  // null, 10
 })
 console.log(result)  // 10 - just like normal
 
 // Call the asynchronous function asynchronously
 // ambi doesn't do anything special here
 result = ambi(asyncMethod, 5, 2, function (err, result) {
-	console.log(err, result)  // null, 10
+    console.log(err, result)  // null, 10
 })
 console.log(result)  // setTimeout - just like normal
 ```
@@ -100,15 +101,14 @@ console.log(result)  // setTimeout - just like normal
 ### Notes
 
 - Ambi accepts the arguments `(method, ...args)`
-	- `method` is the function to execute
-	- `...args` is the arguments to send to the method
-		- the last argument is expected to be the completion callback
-		- the completion callback is optional, but if defined, is expected to have the signature of `(err, ...results)`
+    - `method` is the function to execute
+    - `...args` is the arguments to send to the method
+        - the last argument is expected to be the completion callback
+        - the completion callback is optional, but if defined, is expected to have the signature of `(err, ...results)`
 - If the method has equal or more arguments than ambi received, then we assume it is an asynchronous method and let it handle calling of the completion callback itself
 - If the method has less arguments than ambi received, then we assume it is a synchronous method and we'll call the completion callback ourselves
-	- If the synchronous method throws an error or returns an error, we'll try to call the completion callback with a single `err` argument
-	- If the synchronous method executes without error, we'll try to call the completion callback with a `err` argument equal to null, and a `result` argument equal to the returned result of the synchronous method
-- Ambi can also introspect a different method than the one it fires, by passing `[methodToFire, methodToIntrospect]` as the `method` argument
+    - If the synchronous method throws an error or returns an error, we'll try to call the completion callback with a single `err` argument
+    - If the synchronous method executes without error, we'll try to call the completion callback with a `err` argument equal to null, and a `result` argument equal to the returned result of the synchronous method
 
 
 <!-- HISTORY/ -->
@@ -137,14 +137,14 @@ console.log(result)  // setTimeout - just like normal
 
 These amazing people are maintaining this project:
 
-<ul><li><a href="http://balupton.com">Benjamin Lupton</a></li></ul>
+<ul><li><a href="http://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/ambi/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/ambi">view contributions</a></li></ul>
 
 <h3>Sponsors</h3>
 
 No sponsors yet! Will you be the first?
 
-<span class="badge-patreon"><a href="http://patreon.com/bevry" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a></span>
-<span class="badge-gratipay"><a href="https://www.gratipay.com/bevry" title="Donate weekly to this project using Gratipay"><img src="https://img.shields.io/badge/gratipay-donate-yellow.svg" alt="Gratipay donate button" /></a></span>
+<span class="badge-patreon"><a href="https://patreon.com/bevry" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a></span>
+<span class="badge-opencollective"><a href="https://opencollective.com/bevry" title="Donate to this project using Open Collective"><img src="https://img.shields.io/badge/open%20collective-donate-yellow.svg" alt="Open Collective donate button" /></a></span>
 <span class="badge-flattr"><a href="https://flattr.com/profile/balupton" title="Donate to this project using Flattr"><img src="https://img.shields.io/badge/flattr-donate-yellow.svg" alt="Flattr donate button" /></a></span>
 <span class="badge-paypal"><a href="https://bevry.me/paypal" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
 <span class="badge-bitcoin"><a href="https://bevry.me/bitcoin" title="Donate once-off to this project using Bitcoin"><img src="https://img.shields.io/badge/bitcoin-donate-yellow.svg" alt="Bitcoin donate button" /></a></span>
@@ -154,9 +154,8 @@ No sponsors yet! Will you be the first?
 
 These amazing people have contributed code to this project:
 
-<ul><li><a href="http://balupton.com">Benjamin Lupton</a></li>
-<li><a href="http://seanfridman.com">Sean Fridman</a> — <a href="https://github.com/bevry/ambi/commits?author=sfrdmn" title="View the GitHub contributions of Sean Fridman on repository bevry/ambi">view contributions</a></li>
-<li><a href="https://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/ambi/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/ambi">view contributions</a></li></ul>
+<ul><li><a href="http://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/ambi/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/ambi">view contributions</a></li>
+<li><a href="http://seanfridman.com">Sean Fridman</a> — <a href="https://github.com/bevry/ambi/commits?author=sfrdmn" title="View the GitHub contributions of Sean Fridman on repository bevry/ambi">view contributions</a></li></ul>
 
 <a href="https://github.com/bevry/ambi/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 
