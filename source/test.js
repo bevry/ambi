@@ -6,7 +6,7 @@
 // Import
 const { equal } = require('assert-helpers')
 const joe = require('joe')
-const ambi = require('../')
+const ambi = require('./')
 
 // Prepare
 function wait (delay, fn) {
