@@ -19,8 +19,6 @@
 <span class="badge-paypal"><a href="https://bevry.me/paypal" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
 <span class="badge-bitcoin"><a href="https://bevry.me/bitcoin" title="Donate once-off to this project using Bitcoin"><img src="https://img.shields.io/badge/bitcoin-donate-yellow.svg" alt="Bitcoin donate button" /></a></span>
 <span class="badge-wishlist"><a href="https://bevry.me/wishlist" title="Buy an item on our wishlist for us"><img src="https://img.shields.io/badge/wishlist-donate-yellow.svg" alt="Wishlist browse button" /></a></span>
-<br class="badge-separator" />
-<span class="badge-slackin"><a href="https://slack.bevry.me" title="Join this project's slack community"><img src="https://slack.bevry.me/badge.svg" alt="Slack community badge" /></a></span>
 
 <!-- /BADGES -->
 
@@ -43,7 +41,7 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 <a href="http://browserify.org" title="Browserify lets you require('modules') in the browser by bundling up all of your dependencies"><h3>Browserify</h3></a><ul>
 <li>Install: <code>npm install --save ambi</code></li>
 <li>Module: <code>require('ambi')</code></li>
-<li>CDN URL: <code>//wzrd.in/bundle/ambi@3.0.0</code></li></ul>
+<li>CDN URL: <code>//wzrd.in/bundle/ambi@3.1.0</code></li></ul>
 
 <a href="http://enderjs.com" title="Ender is a full featured package manager for your browser"><h3>Ender</h3></a><ul>
 <li>Install: <code>ender add ambi</code></li>
@@ -54,10 +52,9 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 <p>This package is published with the following editions:</p>
 
 <ul><li><code>ambi</code> aliases <code>ambi/index.js</code> which uses <a href="https://github.com/bevry/editions" title="Editions are the best way to produce and consume packages you care about.">Editions</a> to automatically select the correct edition for the consumers environment</li>
-<li><code>ambi/source/index.js</code> is Source + <a href="https://babeljs.io/docs/learn-es2015/" title="ECMAScript Next">ESNext</a> + <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a></li>
-<li><code>ambi/es2015/index.js</code> is <a href="https://babeljs.io" title="The compiler for writing next generation JavaScript">Babel</a> Compiled + <a href="http://babeljs.io/docs/plugins/preset-es2015/" title="ECMAScript 2015">ES2015</a> + <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a></li></ul>
-
-<p>Older environments may need <a href="https://babeljs.io/docs/usage/polyfill/" title="A polyfill that emulates missing ECMAScript environment features">Babel's Polyfill</a> or something similar.</p>
+<li><code>ambi/source/index.js</code> is esnext source code with require for modules</li>
+<li><code>ambi/edition:browsers/index.js</code> is esnext compiled for browsers with require for modules</li>
+<li><code>ambi/edition:node:0.8/index.js</code> is esnext compiled for node.js >=0.8 with require for modules</li></ul>
 
 <!-- /INSTALL -->
 
