@@ -1,12 +1,14 @@
 # History
 
+## v3.1.1 2018 September 3
+- Updated base files and [editions](https://github.com/bevry/editions) using [boundation](https://github.com/bevry/boundation)
+
 ## v3.1.0 2018 August 16
-- Updated base files using [boundation](https://github.com/bevry/boundation)
-- Updated editions
+- Updated base files and [editions](https://github.com/bevry/editions) using [boundation](https://github.com/bevry/boundation)
 
 ## v3.0.0 2018 July 13
 - Removed `[fireMethod, instrospectionMethod]` for support of [unbounded](https://github.com/bevry/unbounded)
-- Updated base files using [boundation](https://github.com/bevry/boundation)
+- Updated base files and [editions](https://github.com/bevry/editions) using [boundation](https://github.com/bevry/boundation)
 
 ## v2.5.0 2016 May 14
 - No code changes in this release, just updated packaging

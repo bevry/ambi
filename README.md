@@ -41,7 +41,7 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 <a href="http://browserify.org" title="Browserify lets you require('modules') in the browser by bundling up all of your dependencies"><h3>Browserify</h3></a><ul>
 <li>Install: <code>npm install --save ambi</code></li>
 <li>Module: <code>require('ambi')</code></li>
-<li>CDN URL: <code>//wzrd.in/bundle/ambi@3.1.0</code></li></ul>
+<li>CDN URL: <code>//wzrd.in/bundle/ambi@3.1.1</code></li></ul>
 
 <a href="http://enderjs.com" title="Ender is a full featured package manager for your browser"><h3>Ender</h3></a><ul>
 <li>Install: <code>ender add ambi</code></li>
