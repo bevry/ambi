@@ -72,7 +72,7 @@
     },
     {
       "description": "esnext compiled for browsers with require for modules",
-      "directory": "edition:browsers",
+      "directory": "edition-browsers",
       "entry": "index.js",
       "syntaxes": [
         "javascript",
@@ -85,40 +85,38 @@
     },
     {
       "description": "esnext compiled for node.js >=0.8 with require for modules",
-      "directory": "edition:node:0.8",
+      "directory": "edition-node-0.8",
       "entry": "index.js",
       "syntaxes": [
         "javascript",
         "require"
       ],
       "engines": {
-        "node": ">=0.8",
+        "node": "0.8 || 0.10 || 0.12 || 4 || 6 || 8 || 10",
         "browsers": false
       }
     }
   ],
   "main": "index.js",
-  "browser": "edition:browsers/index.js",
+  "browser": "edition-browsers/index.js",
   "dependencies": {
-    "editions": "^2.0.0",
+    "editions": "^2.0.2",
     "typechecker": "^4.3.0"
   },
   "devDependencies": {
     "assert-helpers": "^4.5.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^5.3.0",
+    "eslint": "^5.5.0",
     "joe": "^2.0.2",
     "joe-reporter-console": "^2.0.2",
     "projectz": "^1.4.0"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition:* ./es2015 ./es5 ./out",
-    "our:compile": "npm run our:compile:edition",
-    "our:compile:edition": "npm run our:compile:edition:browsers && npm run our:compile:edition:node",
-    "our:compile:edition:browsers": "env BABEL_ENV=edition:browsers babel --out-dir ./edition:browsers ./source",
-    "our:compile:edition:node": "npm run our:compile:edition:node:0.8",
-    "our:compile:edition:node:0.8": "env BABEL_ENV=edition:node:0.8 babel --out-dir ./edition:node:0.8 ./source",
+    "our:compile": "npm run our:compile:edition-browsers && npm run our:compile:edition-node-0.8",
+    "our:compile:edition-browsers": "env BABEL_ENV=edition-browsers babel --out-dir ./edition-browsers ./source",
+    "our:compile:edition-node-0.8": "env BABEL_ENV=edition-node-0.8 babel --out-dir ./edition-node-0.8 ./source",
     "our:deploy": "echo no need for this project",
     "our:meta": "npm run our:meta:projectz",
     "our:meta:projectz": "projectz compile",
@@ -137,7 +135,19 @@
   },
   "babel": {
     "env": {
-      "edition:node:0.8": {
+      "edition-browsers": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "browsers": "defaults"
+              }
+            }
+          ]
+        ]
+      },
+      "edition-node-0.8": {
         "presets": [
           [
             "env",
