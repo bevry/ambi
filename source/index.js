@@ -4,7 +4,7 @@
 const typeChecker = require('typechecker')
 
 // Define
-module.exports = function ambi (method, ...args) {
+module.exports = function ambi(method, ...args) {
 	// Extract the preceeding arguments and the completion callback
 	const simpleArguments = args.slice(0, -1)
 	const completionCallback = args.slice(-1)[0]
@@ -54,7 +54,10 @@ module.exports = function ambi (method, ...args) {
 	else if (givenArgumentsLength < acceptedArgumentsLength) {
 		executeAsynchronously = true
 		argumentsDifferenceLength = acceptedArgumentsLength - givenArgumentsLength
-		args = simpleArguments.slice().concat(new Array(argumentsDifferenceLength)).concat([completionCallback])
+		args = simpleArguments
+			.slice()
+			.concat(new Array(argumentsDifferenceLength))
+			.concat([completionCallback])
 	}
 
 	// Given arguments are MORE than the expected arguments
@@ -85,8 +88,7 @@ module.exports = function ambi (method, ...args) {
 			// An error was returned so fire the completion callback with the error
 			const err = result
 			completionCallback(err)
-		}
-		else {
+		} else {
 			// Everything worked, so fire the completion callback without an error and with the result
 			completionCallback(null, result)
 		}

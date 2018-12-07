@@ -22,18 +22,24 @@
       "daviddmdev",
       "---",
       "patreon",
-      "opencollective",
       "flattr",
+      "liberapay",
+      "thanksapp",
+      "boostlab",
+      "buymeacoffee",
+      "opencollective",
+      "crypto",
       "paypal",
-      "bitcoin",
       "wishlist"
     ],
     "config": {
-      "patreonUsername": "bevry",
-      "opencollectiveUsername": "bevry",
+      "buymeacoffeeUsername": "balupton",
+      "cryptoURL": "https://bevry.me/crypto",
       "flattrUsername": "balupton",
+      "liberapayUsername": "bevry",
+      "opencollectiveUsername": "bevry",
+      "patreonUsername": "bevry",
       "paypalURL": "https://bevry.me/paypal",
-      "bitcoinURL": "https://bevry.me/bitcoin",
       "wishlistURL": "https://bevry.me/wishlist"
     }
   },
@@ -60,13 +66,13 @@
       "description": "esnext source code with require for modules",
       "directory": "source",
       "entry": "index.js",
-      "syntaxes": [
+      "tags": [
         "javascript",
         "esnext",
         "require"
       ],
       "engines": {
-        "node": ">=6",
+        "node": "6 || 8 || 10 || 11",
         "browsers": false
       }
     },
@@ -74,7 +80,7 @@
       "description": "esnext compiled for browsers with require for modules",
       "directory": "edition-browsers",
       "entry": "index.js",
-      "syntaxes": [
+      "tags": [
         "javascript",
         "require"
       ],
@@ -84,15 +90,15 @@
       }
     },
     {
-      "description": "esnext compiled for node.js >=0.8 with require for modules",
+      "description": "esnext compiled for node.js 0.8 with require for modules",
       "directory": "edition-node-0.8",
       "entry": "index.js",
-      "syntaxes": [
+      "tags": [
         "javascript",
         "require"
       ],
       "engines": {
-        "node": "0.8 || 0.10 || 0.12 || 4 || 6 || 8 || 10",
+        "node": "0.8 || 0.10 || 0.12 || 4 || 6 || 8 || 10 || 11",
         "browsers": false
       }
     }
@@ -100,20 +106,27 @@
   "main": "index.js",
   "browser": "edition-browsers/index.js",
   "dependencies": {
-    "editions": "^2.0.2",
+    "editions": "^2.1.0",
     "typechecker": "^4.3.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
     "assert-helpers": "^4.5.1",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^5.5.0",
-    "joe": "^2.0.2",
+    "eslint": "^5.9.0",
+    "eslint-config-bevry": "^1.0.2",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
     "joe-reporter-console": "^2.0.2",
-    "projectz": "^1.4.0"
+    "kava": "^3.1.0",
+    "prettier": "^1.15.3",
+    "projectz": "^1.5.3",
+    "valid-directory": "^1.0.0"
   },
   "scripts": {
-    "our:clean": "rm -Rf ./docs ./edition:* ./es2015 ./es5 ./out",
+    "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out",
     "our:compile": "npm run our:compile:edition-browsers && npm run our:compile:edition-node-0.8",
     "our:compile:edition-browsers": "env BABEL_ENV=edition-browsers babel --out-dir ./edition-browsers ./source",
     "our:compile:edition-node-0.8": "env BABEL_ENV=edition-node-0.8 babel --out-dir ./edition-node-0.8 ./source",
@@ -129,34 +142,50 @@
     "our:setup": "npm run our:setup:npm",
     "our:setup:npm": "npm install",
     "our:test": "npm run our:verify && npm test",
-    "our:verify": "npm run our:verify:eslint",
-    "our:verify:eslint": "eslint --fix ./source",
-    "test": "node --harmony ./test.js --joe-reporter=console"
+    "our:verify": "npm run our:verify:directory && npm run our:verify:eslint",
+    "our:verify:directory": "npx valid-directory",
+    "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' './source/**/*.*'",
+    "test": "node ./test.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "bevry"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   },
   "babel": {
     "env": {
       "edition-browsers": {
         "presets": [
           [
-            "env",
+            "@babel/preset-env",
             {
               "targets": {
                 "browsers": "defaults"
               }
             }
           ]
+        ],
+        "plugins": [
+          "@babel/proposal-object-rest-spread"
         ]
       },
       "edition-node-0.8": {
         "presets": [
           [
-            "env",
+            "@babel/preset-env",
             {
               "targets": {
                 "node": "0.8"
               }
             }
           ]
+        ],
+        "plugins": [
+          "@babel/proposal-object-rest-spread"
         ]
       }
     }
