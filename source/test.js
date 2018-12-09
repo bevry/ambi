@@ -507,4 +507,22 @@ kava.describe('ambi', function(describe, it) {
 			done()
 		})
 	})
+
+	it('should call ambi.promise to construct promises', function(done) {
+		let ambiPromiseCalled = false
+		ambi.promise = function() {
+			ambiPromiseCalled = true
+			return Promise
+		}
+
+		function successfulPromiseReturning() {
+			return Promise.resolve('async')
+		}
+
+		ambi(successfulPromiseReturning, function(err, result) {
+			equal(null, err, 'Should not return error')
+			equal(ambiPromiseCalled, true, 'Should have called ambi.Promise')
+			done()
+		})
+	})
 })
