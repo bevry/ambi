@@ -45,6 +45,36 @@ kava.describe('ambi', function(describe, it) {
 		})
 	})
 
+	it('should handle result on successful promise returning functions', function(done) {
+		// Define the amount of special checks
+		let executedChecks = 0
+		const totalChecks = 2
+
+		// Perform multiply on an asynchronous function
+		// returning a promise
+		function multiplyAsync(x, y) {
+			return new Promise(function(resolve, reject) {
+				wait(delay, function() {
+					++executedChecks
+					resolve(x * y)
+				})
+			})
+		}
+
+		// Test successful call
+		ambi(multiplyAsync, 2, 5, function(err, result) {
+			equal(err, null, 'error to be null')
+			equal(result, 10, 'result to be set')
+			++executedChecks
+		})
+
+		// Check all the special checks passed
+		wait(delay * 2, function() {
+			equal(executedChecks, totalChecks, 'special checks were as expected')
+			done()
+		})
+	})
+
 	it('should handle result on successful asynchronous functions', function(done) {
 		// Define the amount of special checks
 		let executedChecks = 0
@@ -124,6 +154,35 @@ kava.describe('ambi', function(describe, it) {
 
 		// Test unsuccessful call
 		ambi(returnErrorSync, 2, 5, function(err, result) {
+			equal(err.message, errMessage, 'error to be set')
+			equal(typeof result, 'undefined', 'result to be undefined')
+			++executedChecks
+		})
+
+		// Check all the special checks passed
+		wait(delay * 2, function() {
+			equal(executedChecks, totalChecks, 'special checks were as expected')
+			done()
+		})
+	})
+
+	it('should handle returned errors on unsuccessful promise returning functions', function(done) {
+		// Define the amount of special checks
+		let executedChecks = 0
+		const totalChecks = 2
+
+		// Define the error to be used
+		const errMessage = 'my first error'
+
+		// Perform an error on a synchronous function
+		// by return
+		function returnErrorPromise(x, y) {
+			++executedChecks
+			return Promise.reject(new Error(errMessage))
+		}
+
+		// Test unsuccessful call
+		ambi(returnErrorPromise, 2, 5, function(err, result) {
 			equal(err.message, errMessage, 'error to be set')
 			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
@@ -313,6 +372,68 @@ kava.describe('ambi', function(describe, it) {
 		} catch (err) {
 			catchUncaughtException(err)
 		}
+
+		// Check all the special checks passed
+		wait(delay * 2, function() {
+			equal(executedChecks, totalChecks, 'special checks were as expected')
+			equal(
+				neverReached,
+				false,
+				'never reached section should have never been reached'
+			)
+			done()
+		})
+	})
+
+	it('should NOT handle asynchronous thrown errors on unsuccessful promise returning functions', function(done) {
+		// Check node version
+		if (process.versions.node.substr(0, 3) === '0.8') {
+			console.log(
+				'skip this test on node 0.8 because domains behave differently'
+			)
+			return done()
+		}
+
+		// Define the amount of special checks
+		let executedChecks = 0
+		const totalChecks = 2
+		let neverReached = false
+
+		// Define the error to be used
+		const errMessage = 'my first error'
+
+		// Perform an error on an asynchronous function
+		// by throw inside asynchronous function
+		// and still calling the callback with the error
+		function throwErrorPromiseUncaught(x, y) {
+			return new Promise(function(resolve, reject) {
+				wait(delay, function() {
+					++executedChecks
+					throw new Error(errMessage)
+				})
+			})
+		}
+
+		// Error callback
+		function catchUncaughtException(err) {
+			equal(err.message, errMessage, 'error to be set')
+			++executedChecks
+		}
+
+		// Test unsuccessful call
+		const d = require('domain').create()
+		d.on('error', catchUncaughtException)
+		d.run(function() {
+			try {
+				ambi(throwErrorPromiseUncaught, 2, 5, function(err, result) {
+					// should never reach here
+					++executedChecks
+					neverReached = true
+				})
+			} catch (err) {
+				catchUncaughtException(err)
+			}
+		})
 
 		// Check all the special checks passed
 		wait(delay * 2, function() {

@@ -33,6 +33,10 @@ module.exports = function ambi(method, ...args) {
 		> given arguments are SAME as the accepted arguments
 		> method will be fired with (next)
 		> if they want to use optional args, the function must accept a completion callback
+	ambi(function(a){}, a, next)
+		> VALID: function return a promise, executes asynchronously
+		> given argumetns are SAME as expected arguments
+		> Method will be fored with (a)
 	*/
 	const givenArgumentsLength = args.length
 	// https://github.com/bevry/unbounded
@@ -80,18 +84,26 @@ module.exports = function ambi(method, ...args) {
 	// Execute with the expectation that we will need to fire the completion callback ourselves
 	// Always call the completion callback ourselves as the fire method does not make use of it
 	else {
-		// Fire the method and check for returned errors
+		// Execute function synchronously, so that if sync exception happens it gets thrown naturally
 		const result = method(...args)
 
-		// Check the result for a returned error
-		if (typeChecker.isError(result)) {
-			// An error was returned so fire the completion callback with the error
-			const err = result
-			completionCallback(err)
-		} else {
-			// Everything worked, so fire the completion callback without an error and with the result
-			completionCallback(null, result)
-		}
+		// Wrap result in a promise. Sync results will be turned into promise,
+		// returned promises will be returned directly.
+		Promise.resolve(result).then(
+			function onSuccess(value) {
+				// Check if error was returned rather than thrown
+				if (typeChecker.isError(value)) {
+					// An error was returned so fire the completion callback with the error
+					return completionCallback(value)
+				}
+				// Everything worked, so fire the completion callback without an error and with the result
+				return completionCallback(null, value)
+			},
+			function onError(err) {
+				// An error was returned so fire the completion callback with the error
+				return completionCallback(err)
+			}
+		)
 	}
 
 	// Return nothing as we expect ambi to deal with synchronous and asynchronous methods
