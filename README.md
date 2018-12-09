@@ -29,7 +29,7 @@
 
 <!-- DESCRIPTION/ -->
 
-Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
+Execute a function ambidextrously (normalizes the differences between synchronous, promises, and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
 
 <!-- /DESCRIPTION -->
 
@@ -76,6 +76,10 @@ let result = null
 function syncMethod (x, y) {
     return x * y
 }
+
+function promiseMethod (x, y) {
+    return Promise.resolve(x * y)
+}
 function asyncMethod (x, y, next) {
     return setTimeout(function () {
         next(null, x * y)
@@ -87,17 +91,35 @@ function asyncMethod (x, y, next) {
 result = ambi(syncMethod, 5, 2, function (err, result) {
     console.log(err, result)  // null, 10
 })
-console.log(result)  // 10 - just like normal
+console.log(result)  // Null, result is returned via callback
+
+// Call the promise returning function asynchronously
+// ambi adds support for this asynchrounous callback automatically
+result = ambi(promiseMethod, 5, 2, function (err, result) {
+    console.log(err, result) // null 10
+})
+console.log(result) // null - result is returned via callback
 
 // Call the asynchronous function asynchronously
 // ambi doesn't do anything special here
 result = ambi(asyncMethod, 5, 2, function (err, result) {
     console.log(err, result)  // null, 10
 })
-console.log(result)  // setTimeout - just like normal
+console.log(result)  // null - result is returned via callback
 ```
 
+### Custom promise implementations
 
+By default, Ambi constructs promises when needed using native promises. If
+you wish to use a different promise implementation or lack native promises,
+you can set `ambi.promise` to a function that returns a promise implementation.
+
+```javascript
+const ambi = require('ambi')
+const Bluebird = require('bluebird')
+
+ambi.promise = function () { return Bluebird }
+```
 
 ### Notes
 
