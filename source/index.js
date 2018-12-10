@@ -4,7 +4,7 @@
 const typeChecker = require('typechecker')
 
 // Define
-function ambi(method, ...args) {
+module.exports = function ambi(method, ...args) {
 	// Extract the preceeding arguments and the completion callback
 	const simpleArguments = args.slice(0, -1)
 	const completionCallback = args.slice(-1)[0]
@@ -89,7 +89,7 @@ function ambi(method, ...args) {
 
 		// Wrap result in a promise. Sync results will be turned into promise,
 		// returned promises will be returned directly.
-		ambi.promise().resolve(result).then(
+		Promise.resolve(result).then(
 			function onSuccess(value) {
 				// Check if error was returned rather than thrown
 				if (typeChecker.isError(value)) {
@@ -112,15 +112,3 @@ function ambi(method, ...args) {
 	// so returning anything would be inconsistent
 	return null
 }
-
-// Hook for providing custom Promise implementation. Defaults to native promise
-// if available, but can set it to something else if needed or desired.
-ambi.promise = Promise
-	? function() { return Promise }
-	: function() {
-		throw new Error(
-			'No native promise implementation found, set ambi.promise to your choice of promise implementation'
-		)
-	}
-
-module.exports = ambi
