@@ -29,7 +29,7 @@
 
 <!-- DESCRIPTION/ -->
 
-Execute a function ambidextrously (normalizes the differences between synchronous, promises, and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
+Execute a function ambidextrously (normalizes the differences between synchronous, promise based, and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
 
 <!-- /DESCRIPTION -->
 
@@ -58,7 +58,7 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 <ul><li><code>ambi</code> aliases <code>ambi/index.js</code> which uses <a href="https://github.com/bevry/editions" title="Editions are the best way to produce and consume packages you care about.">Editions</a> to automatically select the correct edition for the consumers environment</li>
 <li><code>ambi/source/index.js</code> is esnext source code with require for modules</li>
 <li><code>ambi/edition-browsers/index.js</code> is esnext compiled for browsers with require for modules</li>
-<li><code>ambi/edition-node-0.8/index.js</code> is esnext compiled for node.js 0.8 with require for modules</li></ul>
+<li><code>ambi/edition-node-0.12/index.js</code> is esnext compiled for node.js 0.12 with require for modules</li></ul>
 
 <!-- /INSTALL -->
 
@@ -165,7 +165,8 @@ No sponsors yet! Will you be the first?
 These amazing people have contributed code to this project:
 
 <ul><li><a href="http://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/ambi/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/ambi">view contributions</a></li>
-<li><a href="http://seanfridman.com">Sean Fridman</a> — <a href="https://github.com/bevry/ambi/commits?author=sfrdmn" title="View the GitHub contributions of Sean Fridman on repository bevry/ambi">view contributions</a></li></ul>
+<li><a href="http://seanfridman.com">Sean Fridman</a> — <a href="https://github.com/bevry/ambi/commits?author=sfrdmn" title="View the GitHub contributions of Sean Fridman on repository bevry/ambi">view contributions</a></li>
+<li>Chris Tavares</li></ul>
 
 <a href="https://github.com/bevry/ambi/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 

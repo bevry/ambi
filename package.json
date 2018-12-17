@@ -60,7 +60,7 @@
     "url": "https://github.com/bevry/ambi.git"
   },
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.12"
   },
   "editions": [
     {
@@ -91,8 +91,8 @@
       }
     },
     {
-      "description": "esnext compiled for node.js 0.8 with require for modules",
-      "directory": "edition-node-0.8",
+      "description": "esnext compiled for node.js 0.12 with require for modules",
+      "directory": "edition-node-0.12",
       "entry": "index.js",
       "tags": [
         "javascript",
@@ -112,11 +112,11 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.2.0",
+    "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "assert-helpers": "^4.5.1",
-    "eslint": "^5.9.0",
+    "eslint": "^5.10.0",
     "eslint-config-bevry": "^1.0.2",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
@@ -128,9 +128,9 @@
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out",
-    "our:compile": "npm run our:compile:edition-browsers && npm run our:compile:edition-node-0.8",
+    "our:compile": "npm run our:compile:edition-browsers && npm run our:compile:edition-node-0.12",
     "our:compile:edition-browsers": "env BABEL_ENV=edition-browsers babel --out-dir ./edition-browsers ./source",
-    "our:compile:edition-node-0.8": "env BABEL_ENV=edition-node-0.8 babel --out-dir ./edition-node-0.8 ./source",
+    "our:compile:edition-node-0.12": "env BABEL_ENV=edition-node-0.12 babel --out-dir ./edition-node-0.12 ./source",
     "our:deploy": "echo no need for this project",
     "our:meta": "npm run our:meta:projectz",
     "our:meta:projectz": "projectz compile",
@@ -174,13 +174,13 @@
           "@babel/proposal-object-rest-spread"
         ]
       },
-      "edition-node-0.8": {
+      "edition-node-0.12": {
         "presets": [
           [
             "@babel/preset-env",
             {
               "targets": {
-                "node": "0.8"
+                "node": "0.12"
               }
             }
           ]
