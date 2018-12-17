@@ -3,112 +3,61 @@
 // Import
 const typeChecker = require('typechecker')
 
-// Define
-module.exports = function ambi(method, ...args) {
-	// Extract the preceeding arguments and the completion callback
-	const simpleArguments = args.slice(0, -1)
-	const completionCallback = args.slice(-1)[0]
+// Handle success case
+function onSuccess(value) {
+	// Reject if an error was returned
+	if (typeChecker.isError(value)) return Promise.reject(value)
+	// Success case, so return the value
+	return value
+}
 
-	// Check the completion callback is actually a function
-	if (!typeChecker.isFunction(completionCallback)) {
-		throw new Error('ambi was called without a completion callback')
-	}
-
+/**
+ * Ambidextrously execute the method with the passed arguments.
+ * If method.length > args.length, then ambi provides the method with a completion callback as the last expected argument.
+ * @param {function} method A method, that can either resolve synchronously, via a promise, or via a callback.
+ * @param {*} args
+ * @returns {Promise<*>} The determined result.
+ */
+function ambi(method, ...args) {
 	/*
 	Different ways functions can be called:
-	ambi(function(a,next){return next()}, a, next)
-		> VALID: execute asynchronously
-		> given arguments are SAME as the accepted arguments
-		> method will be fired with (a, next)
-	ambi(function(a,next){return next()}, next)
-		> VALID: execute asynchronously
-		> given arguments are LESS than the accepted arguments
-		> method will be fired with (undefined, next)
-	ambi(function(a){}, a, next)
-		> VALID: execute synchronously
-		> given arguments are MORE than expected arguments
-		> method will be fired with (a)
-	ambi(function(a){}, next)
-		> INVALID: execute asynchronously
-		> given arguments are SAME as the accepted arguments
-		> method will be fired with (next)
-		> if they want to use optional args, the function must accept a completion callback
-	ambi(function(a){}, a, next)
-		> VALID: function return a promise, executes asynchronously
-		> given argumetns are SAME as expected arguments
-		> Method will be fored with (a)
+	ambi(function(a,next){next(null, a)}, a)
+		> method.length > args.length
+		> next will be provided automatically
+	ambi(function(a){return a}, a)
+		> method.length = args.length
+		> no argument changes by ambi
+	ambi(function(a){return a}, a, b)
+		> method.length < args.length
+		> no argument changes by ambi
 	*/
-	const givenArgumentsLength = args.length
-	// https://github.com/bevry/unbounded
-	const acceptedArgumentsLength = (method.unbounded || method).length
-	let argumentsDifferenceLength = null
-	let executeAsynchronously = null
-
-	// Given arguments are SAME as the expected arguments
-	// This will execute asynchronously
-	// Don't have to do anything with the arguments
-	if (givenArgumentsLength === acceptedArgumentsLength) {
-		executeAsynchronously = true
+	try {
+		// Inject a completion callback
+		if (method.length > args.length) {
+			return new Promise(function(resolve, reject) {
+				const xargs = args
+					.slice()
+					// add the difference as undefined values
+					.concat(new Array(method.length - args.length - 1))
+					// add the completion callback
+					.concat([
+						function ambiCallback(err, ...args) {
+							if (err) return reject(err)
+							if (args.length === 1) return resolve(args[0])
+							return resolve(args)
+						}
+					])
+				method(...xargs)
+			}).then(onSuccess)
+		}
+		// Execute without a completion callback
+		else {
+			return Promise.resolve(method(...args)).then(onSuccess)
+		}
+	} catch (err) {
+		return Promise.reject(err)
 	}
-
-	// Given arguments are LESS than the expected arguments
-	// This will execute asynchronously
-	// We will need to supplement any missing expected arguments with undefined
-	// to ensure the compeltion callback is in the right place in the arguments listing
-	else if (givenArgumentsLength < acceptedArgumentsLength) {
-		executeAsynchronously = true
-		argumentsDifferenceLength = acceptedArgumentsLength - givenArgumentsLength
-		args = simpleArguments
-			.slice()
-			.concat(new Array(argumentsDifferenceLength))
-			.concat([completionCallback])
-	}
-
-	// Given arguments are MORE than the expected arguments
-	// This will execute synchronously
-	// We should to trim off the completion callback from the arguments
-	// as the synchronous function won't care for it
-	// while this isn't essential
-	// it will provide some expectation for the user as to which mode their function was executed in
-	else {
-		executeAsynchronously = false
-		args = simpleArguments.slice()
-	}
-
-	// Execute with the exceptation that the method will fire the completion callback itself
-	if (executeAsynchronously) {
-		// Fire the method
-		method(...args)
-	}
-
-	// Execute with the expectation that we will need to fire the completion callback ourselves
-	// Always call the completion callback ourselves as the fire method does not make use of it
-	else {
-		// Execute function synchronously, so that if sync exception happens it gets thrown naturally
-		const result = method(...args)
-
-		// Wrap result in a promise. Sync results will be turned into promise,
-		// returned promises will be returned directly.
-		Promise.resolve(result).then(
-			function onSuccess(value) {
-				// Check if error was returned rather than thrown
-				if (typeChecker.isError(value)) {
-					// An error was returned so fire the completion callback with the error
-					return completionCallback(value)
-				}
-				// Everything worked, so fire the completion callback without an error and with the result
-				return completionCallback(null, value)
-			},
-			function onError(err) {
-				// An error was returned so fire the completion callback with the error
-				return completionCallback(err)
-			}
-		)
-	}
-
-	// Return nothing as we expect ambi to deal with synchronous and asynchronous methods
-	// so returning something will only work for synchronous methods
-	// and not asynchronous ones
-	// so returning anything would be inconsistent
-	return null
 }
+
+// Export
+module.exports = ambi

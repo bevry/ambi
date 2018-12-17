@@ -1,17 +1,25 @@
 {
   "name": "ambi",
   "version": "4.0.0",
-  "description": "Execute a function ambidextrously (normalizes the differences between synchronous, promise based, and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
+  "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
   "keywords": [
-    "sync",
+    "ambidextrous",
     "async",
-    "fire",
+    "asynchronous",
     "exec",
     "execute",
-    "ambidextrous",
-    "flow"
+    "fire",
+    "flow control",
+    "flow",
+    "flow",
+    "promise",
+    "promised",
+    "promisefy",
+    "promisify",
+    "sync",
+    "synchronous"
   ],
   "badges": {
     "list": [
@@ -50,7 +58,7 @@
   "contributors": [
     "Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
     "Sean Fridman <mail@seanfridman.com> (http://seanfridman.com)",
-    "Chris Tavares <cct@tavaresstudios.com>"
+    "Chris Tavares (https://github.com/christav)"
   ],
   "bugs": {
     "url": "https://github.com/bevry/ambi/issues"
@@ -121,9 +129,12 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
     "joe-reporter-console": "^2.0.2",
+    "jsdoc": "^3.5.5",
     "kava": "^3.1.0",
+    "minami": "^1.2.3",
     "prettier": "^1.15.3",
     "projectz": "^1.5.3",
+    "surge": "^0.20.1",
     "valid-directory": "^1.0.0"
   },
   "scripts": {
@@ -132,7 +143,8 @@
     "our:compile:edition-browsers": "env BABEL_ENV=edition-browsers babel --out-dir ./edition-browsers ./source",
     "our:compile:edition-node-0.12": "env BABEL_ENV=edition-node-0.12 babel --out-dir ./edition-node-0.12 ./source",
     "our:deploy": "echo no need for this project",
-    "our:meta": "npm run our:meta:projectz",
+    "our:meta": "npm run our:meta:docs && npm run our:meta:projectz",
+    "our:meta:docs": "rm -Rf ./docs && jsdoc --recurse --pedantic --access all --destination ./docs --package ./package.json --readme ./README.md --template ./node_modules/minami ./source && mv ./docs/$npm_package_name/$npm_package_version/* ./docs/ && rm -Rf ./docs/$npm_package_name/$npm_package_version",
     "our:meta:projectz": "projectz compile",
     "our:release": "npm run our:release:prepare && npm run our:release:check-changelog && npm run our:release:check-dirty && npm run our:release:tag && npm run our:release:push",
     "our:release:check-changelog": "cat ./HISTORY.md | grep v$npm_package_version || (echo add a changelog entry for v$npm_package_version && exit -1)",

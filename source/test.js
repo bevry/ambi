@@ -32,8 +32,7 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test successful call
-		ambi(multiplySync, 2, 5, function(err, result) {
-			equal(err, null, 'error to be null')
+		ambi(multiplySync, 2, 5).then(function(result) {
 			equal(result, 10, 'result to be set')
 			++executedChecks
 		})
@@ -62,8 +61,7 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test successful call
-		ambi(multiplyAsync, 2, 5, function(err, result) {
-			equal(err, null, 'error to be null')
+		ambi(multiplyAsync, 2, 5).then(function(result) {
 			equal(result, 10, 'result to be set')
 			++executedChecks
 		})
@@ -91,8 +89,7 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test successful call
-		ambi(multiplyAsync, 2, 5, function(err, result) {
-			equal(err, null, 'error to be null')
+		ambi(multiplyAsync, 2, 5).then(function(result) {
 			equal(result, 10, 'result to be set')
 			++executedChecks
 		})
@@ -124,8 +121,7 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test successful call
-		ambi(multiplyAsync, function(err, result) {
-			equal(err, null, 'error to be null')
+		ambi(multiplyAsync).then(function(result) {
 			equal(result, 15, 'result to be set')
 			++executedChecks
 		})
@@ -153,9 +149,8 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test unsuccessful call
-		ambi(returnErrorSync, 2, 5, function(err, result) {
+		ambi(returnErrorSync, 2, 5).catch(function(err) {
 			equal(err.message, errMessage, 'error to be set')
-			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
 		})
 
@@ -182,9 +177,8 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test unsuccessful call
-		ambi(returnErrorPromise, 2, 5, function(err, result) {
+		ambi(returnErrorPromise, 2, 5).catch(function(err) {
 			equal(err.message, errMessage, 'error to be set')
-			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
 		})
 
@@ -214,9 +208,8 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test unsuccessful call
-		ambi(callbackErrorAsync, 2, 5, function(err, result) {
+		ambi(callbackErrorAsync, 2, 5).catch(function(err) {
 			equal(err.message, errMessage, 'error to be set')
-			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
 		})
 
@@ -247,8 +240,7 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test successfull call
-		ambi(returnErrorThenCompleteAsync, 2, 5, function(err, result) {
-			equal(err, null, 'error to be null')
+		ambi(returnErrorThenCompleteAsync, 2, 5).then(function(result) {
 			equal(result, 10, 'result to be set')
 			++executedChecks
 		})
@@ -281,9 +273,8 @@ kava.describe('ambi', function(describe, it) {
 		}
 
 		// Test unsuccessful error call
-		ambi(returnErrorThenCallbackErrorAsync, 2, 5, function(err, result) {
+		ambi(returnErrorThenCallbackErrorAsync, 2, 5).catch(function(err) {
 			equal(err.message, errMessage2, 'error to be set')
-			equal(typeof result, 'undefined', 'result to be undefined')
 			++executedChecks
 		})
 
@@ -294,7 +285,7 @@ kava.describe('ambi', function(describe, it) {
 		})
 	})
 
-	it('should NOT handle thrown errors on unsuccessful synchronous functions', function(done) {
+	it('should handle thrown errors on unsuccessful synchronous functions', function(done) {
 		// Define the amount of special checks
 		let executedChecks = 0
 		const totalChecks = 2
@@ -310,22 +301,16 @@ kava.describe('ambi', function(describe, it) {
 			throw new Error(errMessage)
 		}
 
-		// Error callback
-		function catchUncaughtException(err) {
-			equal(err.message, errMessage, 'error to be set')
-			++executedChecks
-		}
-
 		// Test unsuccessful call
-		try {
-			ambi(throwErrorSyncUncaught, 2, 5, function(err, result) {
-				// should never reach here
+		ambi(throwErrorSyncUncaught, 2, 5)
+			.then(function() {
 				++executedChecks
 				neverReached = true
 			})
-		} catch (err) {
-			catchUncaughtException(err)
-		}
+			.catch(function(err) {
+				equal(err.message, errMessage, 'error to be set')
+				++executedChecks
+			})
 
 		// Check all the special checks passed
 		wait(delay * 2, function() {
@@ -339,7 +324,7 @@ kava.describe('ambi', function(describe, it) {
 		})
 	})
 
-	it('should NOT handle thrown errors on unsuccessful asynchronous functions', function(done) {
+	it('should handle thrown errors on unsuccessful asynchronous functions', function(done) {
 		// Define the amount of special checks
 		let executedChecks = 0
 		const totalChecks = 2
@@ -356,22 +341,16 @@ kava.describe('ambi', function(describe, it) {
 			throw new Error(errMessage)
 		}
 
-		// Error callback
-		function catchUncaughtException(err) {
-			equal(err.message, errMessage, 'error to be set')
-			++executedChecks
-		}
-
 		// Test unsuccessful call
-		try {
-			ambi(throwErrorAsyncUncaught, 2, 5, function(err, result) {
-				// should never reach here
+		ambi(throwErrorAsyncUncaught, 2, 5)
+			.then(function() {
 				++executedChecks
 				neverReached = true
 			})
-		} catch (err) {
-			catchUncaughtException(err)
-		}
+			.catch(function(err) {
+				equal(err.message, errMessage, 'error to be set')
+				++executedChecks
+			})
 
 		// Check all the special checks passed
 		wait(delay * 2, function() {
@@ -386,14 +365,6 @@ kava.describe('ambi', function(describe, it) {
 	})
 
 	it('should NOT handle asynchronous thrown errors on unsuccessful promise returning functions', function(done) {
-		// Check node version
-		if (process.versions.node.substr(0, 3) === '0.8') {
-			console.log(
-				'skip this test on node 0.8 because domains behave differently'
-			)
-			return done()
-		}
-
 		// Define the amount of special checks
 		let executedChecks = 0
 		const totalChecks = 2
@@ -424,15 +395,17 @@ kava.describe('ambi', function(describe, it) {
 		const d = require('domain').create()
 		d.on('error', catchUncaughtException)
 		d.run(function() {
-			try {
-				ambi(throwErrorPromiseUncaught, 2, 5, function(err, result) {
+			ambi(throwErrorPromiseUncaught, 2, 5)
+				.then(function(result) {
 					// should never reach here
 					++executedChecks
 					neverReached = true
 				})
-			} catch (err) {
-				catchUncaughtException(err)
-			}
+				.catch(function(err) {
+					// should never reach here
+					++executedChecks
+					neverReached = true
+				})
 		})
 
 		// Check all the special checks passed
@@ -448,14 +421,6 @@ kava.describe('ambi', function(describe, it) {
 	})
 
 	it('should NOT handle asynchronous thrown errors on unsuccessful asynchronous functions', function(done) {
-		// Check node version
-		if (process.versions.node.substr(0, 3) === '0.8') {
-			console.log(
-				'skip this test on node 0.8 because domains behave differently'
-			)
-			return done()
-		}
-
 		// Define the amount of special checks
 		let executedChecks = 0
 		const totalChecks = 2
@@ -485,15 +450,17 @@ kava.describe('ambi', function(describe, it) {
 		const d = require('domain').create()
 		d.on('error', catchUncaughtException)
 		d.run(function() {
-			try {
-				ambi(throwErrorAsyncUncaught, 2, 5, function(err, result) {
+			ambi(throwErrorAsyncUncaught, 2, 5)
+				.then(function(result) {
 					// should never reach here
 					++executedChecks
 					neverReached = true
 				})
-			} catch (err) {
-				catchUncaughtException(err)
-			}
+				.catch(function(err) {
+					// should never reach here
+					++executedChecks
+					neverReached = true
+				})
 		})
 
 		// Check all the special checks passed
