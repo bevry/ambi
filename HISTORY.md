@@ -1,5 +1,10 @@
 # History
 
+## v5.0.0 2018 December 17
+
+-   Ambi now returns a promise; so do not provide it a callback anymore
+-   Updated [base files](https://github.com/bevry/base) and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v4.0.0 2018 December 17
 
 -   Support methods than return a promise
