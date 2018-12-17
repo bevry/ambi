@@ -1,7 +1,7 @@
 {
   "name": "ambi",
   "version": "3.2.0",
-  "description": "Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
+  "description": "Execute a function ambidextrously (normalizes the differences between synchronous, promise based, and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
   "keywords": [
@@ -49,7 +49,8 @@
   ],
   "contributors": [
     "Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
-    "Sean Fridman <mail@seanfridman.com> (http://seanfridman.com)"
+    "Sean Fridman <mail@seanfridman.com> (http://seanfridman.com)",
+    "Chris Tavares <cct@tavaresstudios.com>"
   ],
   "bugs": {
     "url": "https://github.com/bevry/ambi/issues"
@@ -98,7 +99,7 @@
         "require"
       ],
       "engines": {
-        "node": "0.8 || 0.10 || 0.12 || 4 || 6 || 8 || 10 || 11",
+        "node": "0.12 || 4 || 6 || 8 || 10 || 11",
         "browsers": false
       }
     }

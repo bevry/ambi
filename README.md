@@ -29,7 +29,7 @@
 
 <!-- DESCRIPTION/ -->
 
-Execute a function ambidextrously (normalizes the differences between synchronous and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
+Execute a function ambidextrously (normalizes the differences between synchronous, promises, and asynchronous functions). Useful for treating synchronous functions as asynchronous functions (like supporting both synchronous and asynchronous event definitions automatically).
 
 <!-- /DESCRIPTION -->
 
@@ -70,33 +70,38 @@ Execute a function ambidextrously (normalizes the differences between synchronou
 ``` javascript
 // Import
 const ambi = require('ambi')
-let result = null
 
 // Sample methods
 function syncMethod (x, y) {
     return x * y
 }
+function promiseMethod (x, y) {
+    return Promise.resolve(x * y)
+}
 function asyncMethod (x, y, next) {
-    return setTimeout(function () {
+    setTimeout(function () {
         next(null, x * y)
     }, 0)
 }
 
 // Call the synchronous function asynchronously
 // ambi adds support for this asynchronous callback automatically
-result = ambi(syncMethod, 5, 2, function (err, result) {
+ambi(syncMethod, 5, 2, function (err, result) {
     console.log(err, result)  // null, 10
 })
-console.log(result)  // 10 - just like normal
+
+// Call the promise returning function asynchronously
+// ambi adds support for this asynchrounous callback automatically
+ambi(promiseMethod, 5, 2, function (err, result) {
+    console.log(err, result) // null, 10
+})
 
 // Call the asynchronous function asynchronously
 // ambi doesn't do anything special here
-result = ambi(asyncMethod, 5, 2, function (err, result) {
+ambi(asyncMethod, 5, 2, function (err, result) {
     console.log(err, result)  // null, 10
 })
-console.log(result)  // setTimeout - just like normal
 ```
-
 
 
 ### Notes
