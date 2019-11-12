@@ -13,13 +13,13 @@ matrix:
   allow_failures: []
 cache: npm
 install:
-- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/be651cc263221278d0b3ab25802283fd26033f72/scripts/node-install.bash)"
+- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/c91c9d5eef34ecb0e92029667fd5052640225fa3/scripts/node-install.bash)"
 before_script:
-- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/be651cc263221278d0b3ab25802283fd26033f72/scripts/node-verify.bash)"
+- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/c91c9d5eef34ecb0e92029667fd5052640225fa3/scripts/node-verify.bash)"
 after_success:
-- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/be651cc263221278d0b3ab25802283fd26033f72/scripts/surge.bash)"
-- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/be651cc263221278d0b3ab25802283fd26033f72/scripts/node-publish.bash)"
+- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/c91c9d5eef34ecb0e92029667fd5052640225fa3/scripts/surge.bash)"
+- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/c91c9d5eef34ecb0e92029667fd5052640225fa3/scripts/node-publish.bash)"
 notifications:
   email:
     recipients:
-      secure: SzwUh5s7A1Q5gU7or1EfRMtFiQCHHvrXtBaO1yHSw8UOTWFl9rHQmert9jnoiu2ngAQgc/86SJwsroItaaKyvM2q1zdovQADY4m4KZRpquF1idQpOiFrW1aPZMSLgDMRon/HjsnAq5PhHdGtPdrNCSgtll4i9gZksTIgwHV8vhE=
+      secure: ER5NjuAkQBNtPjuEcsUmSN6YnVqcuI3QFpofLQqECj+wQFQ+MPW6kkDJeDxSH3V3QS8KC5WjKhAar/v5SviYDiSJB19I/4QDBHy16cCZYhTjpewI7a7wE2dgE9KCYqvobeiRTY7rWBbK/AyeT9U2D2nxhnFY5sB1Ds4vU1rBD7Y=
