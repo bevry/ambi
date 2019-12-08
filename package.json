@@ -103,7 +103,7 @@
   "main": "source/index.js",
   "browser": "edition-browsers/index.js",
   "dependencies": {
-    "typechecker": "^5.1.0"
+    "typechecker": "^6.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.4",
