@@ -18,7 +18,7 @@ async function main() {
 
 	// Execute a method that returns the result via a competion callback
 	function asyncMethod(x, y, next) {
-		setTimeout(function() {
+		setTimeout(function () {
 			next(null, x * y)
 		}, 0)
 	}
@@ -26,8 +26,8 @@ async function main() {
 
 	// Execute a method that returns the promise that resolves asynchronously
 	function asyncPromiseMethod(x, y) {
-		return new Promise(function(resolve) {
-			setTimeout(function() {
+		return new Promise(function (resolve) {
+			setTimeout(function () {
 				resolve(x * y)
 			}, 0)
 		})

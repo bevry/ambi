@@ -34,7 +34,7 @@ function ambi(method, ...args) {
 	try {
 		// Inject a completion callback
 		if (method.length > args.length) {
-			return new Promise(function(resolve, reject) {
+			return new Promise(function (resolve, reject) {
 				const xargs = args
 					.slice()
 					// add the difference as undefined values
@@ -45,7 +45,7 @@ function ambi(method, ...args) {
 							if (err) return reject(err)
 							if (args.length === 1) return resolve(args[0])
 							return resolve(args)
-						}
+						},
 					])
 				method(...xargs)
 			}).then(onSuccess)
