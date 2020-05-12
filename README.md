@@ -56,7 +56,7 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 ``` html
 <script type="module">
-    import * as pkg from '//dev.jspm.io/ambi@7.2.0'
+    import * as pkg from '//dev.jspm.io/ambi@7.3.0'
 </script>
 ```
 
