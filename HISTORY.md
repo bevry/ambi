@@ -1,5 +1,11 @@
 # History
 
+## v8.0.0 2020 May 21
+
+-   Breaking Change: CommonJS users must now do `require('ambi').default`
+-   Converted from JavaScript to TypeScript
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v7.3.0 2020 May 12
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)

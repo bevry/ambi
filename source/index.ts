@@ -1,12 +1,10 @@
-'use strict'
-
 // Import
-const typeChecker = require('typechecker')
+import { isError } from 'typechecker'
 
 // Handle success case
-function onSuccess(value) {
+function onSuccess(value: any) {
 	// Reject if an error was returned
-	if (typeChecker.isError(value)) return Promise.reject(value)
+	if (isError(value)) return Promise.reject(value)
 	// Success case, so return the value
 	return value
 }
@@ -14,11 +12,14 @@ function onSuccess(value) {
 /**
  * Ambidextrously execute the method with the passed arguments.
  * If method.length > args.length, then ambi provides the method with a completion callback as the last expected argument.
- * @param {function} method A method, that can either resolve synchronously, via a promise, or via a callback.
- * @param {*} args
- * @returns {Promise<*>} The determined result.
+ * @param method A method, that can either resolve synchronously, via a promise, or via a callback.
+ * @param args The arguments to provide the function.
+ * @returns The determined result.
  */
-function ambi(method, ...args) {
+export default function ambi<Result>(
+	method: Function,
+	...args: any
+): Promise<Result> {
 	/*
 	Different ways functions can be called:
 	ambi(function(a,next){next(null, a)}, a)
@@ -41,7 +42,7 @@ function ambi(method, ...args) {
 					.concat(new Array(method.length - args.length - 1))
 					// add the completion callback
 					.concat([
-						function ambiCallback(err, ...args) {
+						function ambiCallback(err?: Error, ...args: any) {
 							if (err) return reject(err)
 							if (args.length === 1) return resolve(args[0])
 							return resolve(args)
@@ -58,6 +59,3 @@ function ambi(method, ...args) {
 		return Promise.reject(err)
 	}
 }
-
-// Export
-module.exports = ambi

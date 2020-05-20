@@ -1,7 +1,7 @@
 'use strict'
 
 // Import
-const ambi = require('./')
+const ambi = require('./').default
 
 async function main() {
 	// Execute a method that performs synchronously
