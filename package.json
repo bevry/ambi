@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
@@ -127,25 +127,25 @@
   "browser": "edition-browsers/index.js",
   "module": "edition-browsers/index.js",
   "dependencies": {
-    "typechecker": "^7.2.0"
+    "typechecker": "^7.3.0"
   },
   "devDependencies": {
-    "@bevry/update-contributors": "^1.6.0",
+    "@bevry/update-contributors": "^1.7.0",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "assert-helpers": "^6.4.0",
+    "assert-helpers": "^6.5.0",
     "eslint": "^7.0.0",
-    "eslint-config-bevry": "^3.5.0",
+    "eslint-config-bevry": "^3.6.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
-    "kava": "^5.1.0",
+    "kava": "^5.2.0",
     "prettier": "^2.0.5",
-    "projectz": "^2.2.0",
+    "projectz": "^2.3.0",
     "surge": "^0.21.3",
     "typedoc": "^0.17.7",
     "typescript": "^3.9.3",
-    "valid-directory": "^2.0.0",
-    "valid-module": "^1.0.0"
+    "valid-directory": "^2.1.0",
+    "valid-module": "^1.2.0"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
