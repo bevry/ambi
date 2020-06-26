@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "8.13.0",
+  "version": "8.14.0",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
@@ -155,6 +155,10 @@
   "types": "./compiled-types/",
   "type": "module",
   "main": "edition-esnext/index.js",
+  "exports": {
+    "require": "edition-esnext/index.js",
+    "import": "edition-node-esm/index.js"
+  },
   "deno": "edition-deno/index.ts",
   "browser": "edition-browsers/index.js",
   "module": "edition-browsers/index.js",
@@ -218,9 +222,5 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
-  },
-  "exports": {
-    "require": "edition-esnext/index.js",
-    "import": "edition-node-esm/index.js"
   }
 }
