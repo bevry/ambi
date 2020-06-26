@@ -223,17 +223,17 @@ asn1@~0.2.3:
   dependencies:
     safer-buffer "~2.1.0"
 
-assert-helpers@^6.13.0:
-  version "6.13.0"
-  resolved "https://registry.yarnpkg.com/assert-helpers/-/assert-helpers-6.13.0.tgz#61b469769f6a13307ec3ce94908faa99def5f217"
-  integrity sha512-plZTTRls5KhJ6IbQ9NCqhuddX9h2rlrZ9Ru8n8GrT1vw4xiT9/w0QYvGGQBRhGAQNnHtYsK1l2tLixu6OoObuQ==
+assert-helpers@^6.14.1:
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/assert-helpers/-/assert-helpers-6.14.1.tgz#3bb74d5f2cc74fddab091d13f03346a047d14eb6"
+  integrity sha512-RDOshvxmXlwLZZVkabwGobx6EeUumckPNW9llM8YYLh3/BLlyIIG4goRX8sBa5WP79WfR4FF+gEf0OO+1kW7Mg==
   dependencies:
     "@types/ansicolors" "^0.0.33"
     "@types/diff" "^4.0.2"
     "@types/node" "^14.0.14"
     ansicolors "^0.3.2"
     diff "^4.0.2"
-    errlop "3.9.0"
+    errlop "^3.10.0"
 
 assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"
@@ -280,9 +280,9 @@ aws4@^1.8.0:
   integrity sha512-3YDiu347mtVtjpyV3u5kVqQLP242c06zwDOgpeRnybmXlYYsLbtTrUBUm8i8srONt+FWobl5aibnU1030PeeuA==
 
 badges@^4.14.0:
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/badges/-/badges-4.14.0.tgz#3dd8755079dbf41aa26a795d7d8e71bd8c8352f4"
-  integrity sha512-nlhFiI03a2LRWHyTzwV8STwrS3yBnZFRH3V9PxawpdQDSQ92EkU6aVNxlHtmCzJSBn49L2KkdRZXubwZJ8mkgw==
+  version "4.15.1"
+  resolved "https://registry.yarnpkg.com/badges/-/badges-4.15.1.tgz#a5b6e974b3bcc0bf7e95945a6771655eb62b388a"
+  integrity sha512-/dLE+UWyfPuWIvcIWVx7S9saPmvtfZVGkPGUI7II95qGoE0uqXL9CIEbGRXhXnp00VnZSkeX5X2c2oiztDtVLQ==
 
 balanced-match@^1.0.0:
   version "1.0.0"
