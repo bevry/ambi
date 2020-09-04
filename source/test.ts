@@ -4,7 +4,8 @@
 // Import
 import { equal } from 'assert-helpers'
 import kava from 'kava'
-import ambi from './'
+import ambi from './index.js'
+import domain from 'domain'
 
 // Prepare
 function wait(delay: number, fn: (...args: any[]) => void) {
@@ -414,7 +415,7 @@ kava.suite('ambi', function (suite, test) {
 		}
 
 		// Test unsuccessful call
-		const d = require('domain').create()
+		const d = domain.create()
 		d.on('error', catchUncaughtException)
 		d.run(function () {
 			ambi(throwErrorPromiseUncaught, 2, 5)
@@ -473,7 +474,7 @@ kava.suite('ambi', function (suite, test) {
 		}
 
 		// Test unsuccessful call
-		const d = require('domain').create()
+		const d = domain.create()
 		d.on('error', catchUncaughtException)
 		d.run(function () {
 			ambi(throwErrorAsyncUncaught, 2, 5)

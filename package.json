@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "8.21.0",
+  "version": "8.21.1",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
@@ -13,9 +13,6 @@
     "deno-edition",
     "deno-entry",
     "denoland",
-    "es2018",
-    "es2019",
-    "es2020",
     "esnext",
     "exec",
     "execute",
@@ -63,6 +60,7 @@
       "patreonUsername": "bevry",
       "paypalURL": "https://bevry.me/paypal",
       "wishlistURL": "https://bevry.me/wishlist",
+      "travisTLD": "com",
       "githubUsername": "bevry",
       "githubRepository": "ambi",
       "githubSlug": "bevry/ambi",
@@ -114,7 +112,7 @@
       }
     },
     {
-      "description": "TypeScript compiled against ESNext for Node.js with Require for modules",
+      "description": "TypeScript compiled against ESNext for Node.js 10 || 12 || 13 || 14 with Require for modules",
       "directory": "edition-esnext",
       "entry": "index.js",
       "tags": [
@@ -123,54 +121,12 @@
         "require"
       ],
       "engines": {
-        "node": true,
+        "node": "10 || 12 || 13 || 14",
         "browsers": false
       }
     },
     {
-      "description": "TypeScript compiled against ES2020 for Node.js with Require for modules",
-      "directory": "edition-es2020",
-      "entry": "index.js",
-      "tags": [
-        "javascript",
-        "es2020",
-        "require"
-      ],
-      "engines": {
-        "node": true,
-        "browsers": false
-      }
-    },
-    {
-      "description": "TypeScript compiled against ES2019 for Node.js with Require for modules",
-      "directory": "edition-es2019",
-      "entry": "index.js",
-      "tags": [
-        "javascript",
-        "es2019",
-        "require"
-      ],
-      "engines": {
-        "node": true,
-        "browsers": false
-      }
-    },
-    {
-      "description": "TypeScript compiled against ES2018 for Node.js with Require for modules",
-      "directory": "edition-es2018",
-      "entry": "index.js",
-      "tags": [
-        "javascript",
-        "es2018",
-        "require"
-      ],
-      "engines": {
-        "node": true,
-        "browsers": false
-      }
-    },
-    {
-      "description": "TypeScript compiled against ESNext for Node.js with Import for modules",
+      "description": "TypeScript compiled against ESNext for Node.js 12 || 13 || 14 with Import for modules",
       "directory": "edition-esnext-esm",
       "entry": "index.js",
       "tags": [
@@ -179,49 +135,7 @@
         "import"
       ],
       "engines": {
-        "node": true,
-        "browsers": false
-      }
-    },
-    {
-      "description": "TypeScript compiled against ES2020 for Node.js with Import for modules",
-      "directory": "edition-es2020-esm",
-      "entry": "index.js",
-      "tags": [
-        "javascript",
-        "es2020",
-        "import"
-      ],
-      "engines": {
-        "node": true,
-        "browsers": false
-      }
-    },
-    {
-      "description": "TypeScript compiled against ES2019 for Node.js with Import for modules",
-      "directory": "edition-es2019-esm",
-      "entry": "index.js",
-      "tags": [
-        "javascript",
-        "es2019",
-        "import"
-      ],
-      "engines": {
-        "node": true,
-        "browsers": false
-      }
-    },
-    {
-      "description": "TypeScript compiled against ES2018 for Node.js with Import for modules",
-      "directory": "edition-es2018-esm",
-      "entry": "index.js",
-      "tags": [
-        "javascript",
-        "es2018",
-        "import"
-      ],
-      "engines": {
-        "node": true,
+        "node": "12 || 13 || 14",
         "browsers": false
       }
     },
@@ -242,11 +156,10 @@
   ],
   "types": "./compiled-types/",
   "type": "module",
-  "main": "index.cjs",
+  "main": "edition-esnext/index.js",
   "exports": {
     "node": {
       "import": "./edition-esnext-esm/index.js",
-      "default": "./index.cjs",
       "require": "./edition-esnext/index.js"
     },
     "browser": {
@@ -257,7 +170,6 @@
   "browser": "edition-browsers/index.js",
   "module": "edition-browsers/index.js",
   "dependencies": {
-    "editions": "^4.1.0",
     "typechecker": "^7.14.0"
   },
   "devDependencies": {
@@ -279,26 +191,11 @@
     "valid-directory": "^3.3.0",
     "valid-module": "^1.13.0"
   },
-  "eslintConfig": {
-    "extends": [
-      "bevry"
-    ]
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
-    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-browsers && npm run our:compile:edition-es2018 && npm run our:compile:edition-es2018-esm && npm run our:compile:edition-es2019 && npm run our:compile:edition-es2019-esm && npm run our:compile:edition-es2020 && npm run our:compile:edition-es2020-esm && npm run our:compile:edition-esnext && npm run our:compile:edition-esnext-esm && npm run our:compile:types",
+    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-browsers && npm run our:compile:edition-esnext && npm run our:compile:edition-esnext-esm && npm run our:compile:types",
     "our:compile:deno": "make-deno-edition --attempt",
     "our:compile:edition-browsers": "tsc --module ESNext --target ES2019 --outDir ./edition-browsers --project tsconfig.json && ( test ! -d edition-browsers/source || ( mv edition-browsers/source edition-temp && rm -Rf edition-browsers && mv edition-temp edition-browsers ) )",
-    "our:compile:edition-es2018": "tsc --module commonjs --target ES2018 --outDir ./edition-es2018 --project tsconfig.json && ( test ! -d edition-es2018/source || ( mv edition-es2018/source edition-temp && rm -Rf edition-es2018 && mv edition-temp edition-es2018 ) ) && echo '{\"type\": \"commonjs\"}' > edition-es2018/package.json",
-    "our:compile:edition-es2018-esm": "tsc --module ESNext --target ES2018 --outDir ./edition-es2018-esm --project tsconfig.json && ( test ! -d edition-es2018-esm/source || ( mv edition-es2018-esm/source edition-temp && rm -Rf edition-es2018-esm && mv edition-temp edition-es2018-esm ) ) && echo '{\"type\": \"module\"}' > edition-es2018-esm/package.json",
-    "our:compile:edition-es2019": "tsc --module commonjs --target ES2019 --outDir ./edition-es2019 --project tsconfig.json && ( test ! -d edition-es2019/source || ( mv edition-es2019/source edition-temp && rm -Rf edition-es2019 && mv edition-temp edition-es2019 ) ) && echo '{\"type\": \"commonjs\"}' > edition-es2019/package.json",
-    "our:compile:edition-es2019-esm": "tsc --module ESNext --target ES2019 --outDir ./edition-es2019-esm --project tsconfig.json && ( test ! -d edition-es2019-esm/source || ( mv edition-es2019-esm/source edition-temp && rm -Rf edition-es2019-esm && mv edition-temp edition-es2019-esm ) ) && echo '{\"type\": \"module\"}' > edition-es2019-esm/package.json",
-    "our:compile:edition-es2020": "tsc --module commonjs --target ES2020 --outDir ./edition-es2020 --project tsconfig.json && ( test ! -d edition-es2020/source || ( mv edition-es2020/source edition-temp && rm -Rf edition-es2020 && mv edition-temp edition-es2020 ) ) && echo '{\"type\": \"commonjs\"}' > edition-es2020/package.json",
-    "our:compile:edition-es2020-esm": "tsc --module ESNext --target ES2020 --outDir ./edition-es2020-esm --project tsconfig.json && ( test ! -d edition-es2020-esm/source || ( mv edition-es2020-esm/source edition-temp && rm -Rf edition-es2020-esm && mv edition-temp edition-es2020-esm ) ) && echo '{\"type\": \"module\"}' > edition-es2020-esm/package.json",
     "our:compile:edition-esnext": "tsc --module commonjs --target ESNext --outDir ./edition-esnext --project tsconfig.json && ( test ! -d edition-esnext/source || ( mv edition-esnext/source edition-temp && rm -Rf edition-esnext && mv edition-temp edition-esnext ) ) && echo '{\"type\": \"commonjs\"}' > edition-esnext/package.json",
     "our:compile:edition-esnext-esm": "tsc --module ESNext --target ESNext --outDir ./edition-esnext-esm --project tsconfig.json && ( test ! -d edition-esnext-esm/source || ( mv edition-esnext-esm/source edition-temp && rm -Rf edition-esnext-esm && mv edition-temp edition-esnext-esm ) ) && echo '{\"type\": \"module\"}' > edition-esnext-esm/package.json",
     "our:compile:types": "tsc --project tsconfig.json --emitDeclarationOnly --declaration --declarationMap --declarationDir ./compiled-types && ( test ! -d compiled-types/source || ( mv compiled-types/source edition-temp && rm -Rf compiled-types && mv edition-temp compiled-types ) )",
@@ -322,6 +219,15 @@
     "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' --ignore-pattern '**/vendor/' --ignore-pattern '**/node_modules/' --ext .mjs,.js,.jsx,.ts,.tsx ./source",
     "our:verify:module": "valid-module",
     "our:verify:prettier": "prettier --write .",
-    "test": "node ./test.cjs"
+    "test": "node ./edition-esnext/test.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "bevry"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }
