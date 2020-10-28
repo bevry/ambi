@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "8.21.1",
+  "version": "8.22.0",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
@@ -93,6 +93,7 @@
       "directory": "source",
       "entry": "index.ts",
       "tags": [
+        "source",
         "typescript",
         "import"
       ],
@@ -103,6 +104,7 @@
       "directory": "edition-browsers",
       "entry": "index.js",
       "tags": [
+        "compiled",
         "javascript",
         "import"
       ],
@@ -112,30 +114,32 @@
       }
     },
     {
-      "description": "TypeScript compiled against ESNext for Node.js 10 || 12 || 13 || 14 with Require for modules",
+      "description": "TypeScript compiled against ESNext for Node.js 10 || 12 || 14 || 15 with Require for modules",
       "directory": "edition-esnext",
       "entry": "index.js",
       "tags": [
+        "compiled",
         "javascript",
         "esnext",
         "require"
       ],
       "engines": {
-        "node": "10 || 12 || 13 || 14",
+        "node": "10 || 12 || 14 || 15",
         "browsers": false
       }
     },
     {
-      "description": "TypeScript compiled against ESNext for Node.js 12 || 13 || 14 with Import for modules",
+      "description": "TypeScript compiled against ESNext for Node.js 12 || 14 || 15 with Import for modules",
       "directory": "edition-esnext-esm",
       "entry": "index.js",
       "tags": [
+        "compiled",
         "javascript",
         "esnext",
         "import"
       ],
       "engines": {
-        "node": "12 || 13 || 14",
+        "node": "12 || 14 || 15",
         "browsers": false
       }
     },
@@ -170,26 +174,26 @@
   "browser": "edition-browsers/index.js",
   "module": "edition-browsers/index.js",
   "dependencies": {
-    "typechecker": "^7.14.0"
+    "typechecker": "^7.16.0"
   },
   "devDependencies": {
-    "@bevry/update-contributors": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
-    "assert-helpers": "^7.1.0",
-    "eslint": "^7.8.1",
-    "eslint-config-bevry": "^3.19.0",
-    "eslint-config-prettier": "^6.11.0",
+    "@bevry/update-contributors": "^1.17.0",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "assert-helpers": "^8.0.1",
+    "eslint": "^7.12.1",
+    "eslint-config-bevry": "^3.22.0",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "kava": "^5.11.0",
-    "make-deno-edition": "^1.1.0",
-    "prettier": "^2.1.1",
-    "projectz": "^2.15.0",
+    "kava": "^5.12.0",
+    "make-deno-edition": "^1.2.0",
+    "prettier": "^2.1.2",
+    "projectz": "^2.16.0",
     "surge": "^0.21.6",
-    "typedoc": "^0.19.0",
-    "typescript": "^4.0.2",
-    "valid-directory": "^3.3.0",
-    "valid-module": "^1.13.0"
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.5",
+    "valid-directory": "^3.4.0",
+    "valid-module": "^1.14.0"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
