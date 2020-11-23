@@ -1,5 +1,9 @@
 # History
 
+## v8.23.0 2020 November 23
+
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v8.22.0 2020 October 29
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)

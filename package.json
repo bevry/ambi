@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "8.22.0",
+  "version": "8.23.0",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "deno-edition",
     "deno-entry",
     "denoland",
-    "esnext",
+    "es2017",
     "exec",
     "execute",
     "export-default",
@@ -34,7 +34,6 @@
   ],
   "badges": {
     "list": [
-      "travisci",
       "npmversion",
       "npmdownloads",
       "daviddm",
@@ -60,7 +59,6 @@
       "patreonUsername": "bevry",
       "paypalURL": "https://bevry.me/paypal",
       "wishlistURL": "https://bevry.me/wishlist",
-      "travisTLD": "com",
       "githubUsername": "bevry",
       "githubRepository": "ambi",
       "githubSlug": "bevry/ambi",
@@ -114,13 +112,13 @@
       }
     },
     {
-      "description": "TypeScript compiled against ESNext for Node.js 10 || 12 || 14 || 15 with Require for modules",
-      "directory": "edition-esnext",
+      "description": "TypeScript compiled against ES2017 for Node.js 10 || 12 || 14 || 15 with Require for modules",
+      "directory": "edition-es2017",
       "entry": "index.js",
       "tags": [
         "compiled",
         "javascript",
-        "esnext",
+        "es2017",
         "require"
       ],
       "engines": {
@@ -129,13 +127,13 @@
       }
     },
     {
-      "description": "TypeScript compiled against ESNext for Node.js 12 || 14 || 15 with Import for modules",
-      "directory": "edition-esnext-esm",
+      "description": "TypeScript compiled against ES2017 for Node.js 12 || 14 || 15 with Import for modules",
+      "directory": "edition-es2017-esm",
       "entry": "index.js",
       "tags": [
         "compiled",
         "javascript",
-        "esnext",
+        "es2017",
         "import"
       ],
       "engines": {
@@ -160,11 +158,11 @@
   ],
   "types": "./compiled-types/",
   "type": "module",
-  "main": "edition-esnext/index.js",
+  "main": "edition-es2017/index.js",
   "exports": {
     "node": {
-      "import": "./edition-esnext-esm/index.js",
-      "require": "./edition-esnext/index.js"
+      "import": "./edition-es2017-esm/index.js",
+      "require": "./edition-es2017/index.js"
     },
     "browser": {
       "import": "./edition-browsers/index.js"
@@ -174,34 +172,34 @@
   "browser": "edition-browsers/index.js",
   "module": "edition-browsers/index.js",
   "dependencies": {
-    "typechecker": "^7.16.0"
+    "typechecker": "^7.17.0"
   },
   "devDependencies": {
-    "@bevry/update-contributors": "^1.17.0",
-    "@typescript-eslint/eslint-plugin": "^4.6.0",
-    "@typescript-eslint/parser": "^4.6.0",
-    "assert-helpers": "^8.0.1",
-    "eslint": "^7.12.1",
-    "eslint-config-bevry": "^3.22.0",
+    "@bevry/update-contributors": "^1.18.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "assert-helpers": "^8.1.0",
+    "eslint": "^7.14.0",
+    "eslint-config-bevry": "^3.23.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "kava": "^5.12.0",
+    "kava": "^5.13.0",
     "make-deno-edition": "^1.2.0",
-    "prettier": "^2.1.2",
-    "projectz": "^2.16.0",
-    "surge": "^0.21.6",
+    "prettier": "^2.2.0",
+    "projectz": "^2.17.0",
+    "surge": "^0.21.7",
     "typedoc": "^0.19.2",
-    "typescript": "^4.0.5",
-    "valid-directory": "^3.4.0",
-    "valid-module": "^1.14.0"
+    "typescript": "^4.1.2",
+    "valid-directory": "^3.5.0",
+    "valid-module": "^1.15.0"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
-    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-browsers && npm run our:compile:edition-esnext && npm run our:compile:edition-esnext-esm && npm run our:compile:types",
+    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-browsers && npm run our:compile:edition-es2017 && npm run our:compile:edition-es2017-esm && npm run our:compile:types",
     "our:compile:deno": "make-deno-edition --attempt",
     "our:compile:edition-browsers": "tsc --module ESNext --target ES2019 --outDir ./edition-browsers --project tsconfig.json && ( test ! -d edition-browsers/source || ( mv edition-browsers/source edition-temp && rm -Rf edition-browsers && mv edition-temp edition-browsers ) )",
-    "our:compile:edition-esnext": "tsc --module commonjs --target ESNext --outDir ./edition-esnext --project tsconfig.json && ( test ! -d edition-esnext/source || ( mv edition-esnext/source edition-temp && rm -Rf edition-esnext && mv edition-temp edition-esnext ) ) && echo '{\"type\": \"commonjs\"}' > edition-esnext/package.json",
-    "our:compile:edition-esnext-esm": "tsc --module ESNext --target ESNext --outDir ./edition-esnext-esm --project tsconfig.json && ( test ! -d edition-esnext-esm/source || ( mv edition-esnext-esm/source edition-temp && rm -Rf edition-esnext-esm && mv edition-temp edition-esnext-esm ) ) && echo '{\"type\": \"module\"}' > edition-esnext-esm/package.json",
+    "our:compile:edition-es2017": "tsc --module commonjs --target ES2017 --outDir ./edition-es2017 --project tsconfig.json && ( test ! -d edition-es2017/source || ( mv edition-es2017/source edition-temp && rm -Rf edition-es2017 && mv edition-temp edition-es2017 ) ) && echo '{\"type\": \"commonjs\"}' > edition-es2017/package.json",
+    "our:compile:edition-es2017-esm": "tsc --module ESNext --target ES2017 --outDir ./edition-es2017-esm --project tsconfig.json && ( test ! -d edition-es2017-esm/source || ( mv edition-es2017-esm/source edition-temp && rm -Rf edition-es2017-esm && mv edition-temp edition-es2017-esm ) ) && echo '{\"type\": \"module\"}' > edition-es2017-esm/package.json",
     "our:compile:types": "tsc --project tsconfig.json --emitDeclarationOnly --declaration --declarationMap --declarationDir ./compiled-types && ( test ! -d compiled-types/source || ( mv compiled-types/source edition-temp && rm -Rf compiled-types && mv edition-temp compiled-types ) )",
     "our:deploy": "echo no need for this project",
     "our:meta": "npm run our:meta:contributors && npm run our:meta:docs && npm run our:meta:projectz",
@@ -223,7 +221,7 @@
     "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' --ignore-pattern '**/vendor/' --ignore-pattern '**/node_modules/' --ext .mjs,.js,.jsx,.ts,.tsx ./source",
     "our:verify:module": "valid-module",
     "our:verify:prettier": "prettier --write .",
-    "test": "node ./edition-esnext/test.js"
+    "test": "node ./edition-es2017/test.js"
   },
   "eslintConfig": {
     "extends": [
