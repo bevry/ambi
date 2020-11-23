@@ -7,6 +7,7 @@
 
 <!-- BADGES/ -->
 
+<span class="badge-githubworkflow"><a href="https://github.com/bevry/ambi/actions?query=workflow%3Abevry" title="View the status of this project's GitHub Workflow: bevry"><img src="https://github.com/bevry/ambi/workflows/bevry/badge.svg" alt="Status of the GitHub Workflow: bevry" /></a></span>
 <span class="badge-npmversion"><a href="https://npmjs.org/package/ambi" title="View this project on NPM"><img src="https://img.shields.io/npm/v/ambi.svg" alt="NPM version" /></a></span>
 <span class="badge-npmdownloads"><a href="https://npmjs.org/package/ambi" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/ambi.svg" alt="NPM downloads" /></a></span>
 <span class="badge-daviddm"><a href="https://david-dm.org/bevry/ambi" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/bevry/ambi.svg" alt="Dependency Status" /></a></span>
@@ -54,14 +55,14 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/ambi@^8.23.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/ambi@^8.24.0/edition-deno/index.ts'
 ```
 
 <a href="https://www.skypack.dev" title="Skypack is a JavaScript Delivery Network for modern web apps"><h3>Skypack</h3></a>
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/ambi@^8.23.0'
+    import pkg from '//cdn.skypack.dev/ambi@^8.24.0'
 </script>
 ```
 
@@ -69,7 +70,7 @@ import pkg from 'https://unpkg.com/ambi@^8.23.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/ambi@^8.23.0'
+    import pkg from '//unpkg.com/ambi@^8.24.0'
 </script>
 ```
 
@@ -77,7 +78,7 @@ import pkg from 'https://unpkg.com/ambi@^8.23.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/ambi@8.23.0'
+    import pkg from '//dev.jspm.io/ambi@8.24.0'
 </script>
 ```
 

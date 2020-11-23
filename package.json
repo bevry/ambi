@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "8.23.0",
+  "version": "8.24.0",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "MIT",
@@ -34,6 +34,7 @@
   ],
   "badges": {
     "list": [
+      "githubworkflow",
       "npmversion",
       "npmdownloads",
       "daviddm",
@@ -50,6 +51,7 @@
       "wishlist"
     ],
     "config": {
+      "githubWorkflow": "bevry",
       "githubSponsorsUsername": "balupton",
       "buymeacoffeeUsername": "balupton",
       "cryptoURL": "https://bevry.me/crypto",
@@ -186,7 +188,7 @@
     "kava": "^5.13.0",
     "make-deno-edition": "^1.2.0",
     "prettier": "^2.2.0",
-    "projectz": "^2.17.0",
+    "projectz": "^2.18.0",
     "surge": "^0.21.7",
     "typedoc": "^0.19.2",
     "typescript": "^4.1.2",

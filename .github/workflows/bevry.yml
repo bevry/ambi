@@ -1,3 +1,4 @@
+name: bevry
 'on':
   - push
   - pull_request
@@ -15,11 +16,10 @@ jobs:
           - '14'
           - '15'
     runs-on: '${{ matrix.os }}'
+    continue-on-error: "${{ contains('macos-latest windows-latest', matrix.os) }}"
     steps:
-      - &ref_0
-        uses: actions/checkout@v2
-      - &ref_1
-        name: Install desired Node.js version
+      - uses: actions/checkout@v2
+      - name: Install desired Node.js version
         uses: actions/setup-node@v2-beta
         with:
           node-version: '14'
@@ -32,16 +32,16 @@ jobs:
         with:
           node-version: '${{ matrix.node }}'
       - run: npm test
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
-        with:
-          github-token: '${{ secrets.DEPENDABOT_AUTOMERGE_GITHUB_TOKEN }}'
   publish:
     if: "${{ github.event_name == 'push' }}"
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - *ref_0
-      - *ref_1
+      - uses: actions/checkout@v2
+      - name: Install desired Node.js version
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
       - run: 'npm run our:setup'
       - run: 'npm run our:compile'
       - run: 'npm run our:meta'
