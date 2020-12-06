@@ -183,7 +183,7 @@
     "assert-helpers": "^8.1.0",
     "eslint": "^7.14.0",
     "eslint-config-bevry": "^3.23.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "kava": "^5.13.0",
     "make-deno-edition": "^1.2.0",
