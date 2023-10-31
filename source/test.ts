@@ -82,7 +82,7 @@ kava.suite('ambi', function (suite, test) {
 		function multiplyAsync(
 			x: number,
 			y: number,
-			next: (err?: Error | null, result?: number) => any
+			next: (err?: Error | null, result?: number) => any,
 		) {
 			wait(delay, function () {
 				next(null, x * y)
@@ -114,7 +114,7 @@ kava.suite('ambi', function (suite, test) {
 		function multiplyAsync(
 			x: number,
 			y: number,
-			next: (err?: Error | null, result?: number) => any
+			next: (err?: Error | null, result?: number) => any,
 		) {
 			equal(typeof x, 'undefined', 'x to be undefined')
 			equal(typeof y, 'undefined', 'y to be undefined')
@@ -209,7 +209,7 @@ kava.suite('ambi', function (suite, test) {
 		function callbackErrorAsync(
 			x: number,
 			y: number,
-			next: (err?: Error | null, result?: number) => any
+			next: (err?: Error | null, result?: number) => any,
 		) {
 			wait(delay, function () {
 				next(new Error(errMessage))
@@ -245,7 +245,7 @@ kava.suite('ambi', function (suite, test) {
 		function returnErrorThenCompleteAsync(
 			x: number,
 			y: number,
-			next: (err?: Error | null, result?: number) => any
+			next: (err?: Error | null, result?: number) => any,
 		) {
 			wait(delay, function () {
 				next(null, x * y)
@@ -282,7 +282,7 @@ kava.suite('ambi', function (suite, test) {
 		function returnErrorThenCallbackErrorAsync(
 			x: number,
 			y: number,
-			next: (err?: Error | null, result?: number) => any
+			next: (err?: Error | null, result?: number) => any,
 		) {
 			wait(delay, function () {
 				next(new Error(errMessage2))
@@ -337,7 +337,7 @@ kava.suite('ambi', function (suite, test) {
 			equal(
 				neverReached,
 				false,
-				'never reached section should have never been reached'
+				'never reached section should have never been reached',
 			)
 			done()
 		})
@@ -358,7 +358,7 @@ kava.suite('ambi', function (suite, test) {
 		function throwErrorAsyncUncaught(
 			x: number,
 			y: number,
-			next: (err?: Error | null, result?: number) => any
+			next: (err?: Error | null, result?: number) => any,
 		) {
 			++executedChecks
 			throw new Error(errMessage)
@@ -381,7 +381,7 @@ kava.suite('ambi', function (suite, test) {
 			equal(
 				neverReached,
 				false,
-				'never reached section should have never been reached'
+				'never reached section should have never been reached',
 			)
 			done()
 		})
@@ -437,7 +437,7 @@ kava.suite('ambi', function (suite, test) {
 			equal(
 				neverReached,
 				false,
-				'never reached section should have never been reached'
+				'never reached section should have never been reached',
 			)
 			done()
 		})
@@ -458,7 +458,7 @@ kava.suite('ambi', function (suite, test) {
 		function throwErrorAsyncUncaught(
 			x: number,
 			y: number,
-			next: (err?: Error | null, result?: number) => any
+			next: (err?: Error | null, result?: number) => any,
 		) {
 			wait(delay, function () {
 				++executedChecks
@@ -496,7 +496,7 @@ kava.suite('ambi', function (suite, test) {
 			equal(
 				neverReached,
 				false,
-				'never reached section should have never been reached'
+				'never reached section should have never been reached',
 			)
 			done()
 		})
