@@ -55,7 +55,7 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/ambi@^8.29.0'
+    import pkg from '//cdn.skypack.dev/ambi@^8.30.0'
 </script>
 ```
 
@@ -63,7 +63,7 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/ambi@^8.29.0'
+    import pkg from '//unpkg.com/ambi@^8.30.0'
 </script>
 ```
 
@@ -71,7 +71,7 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/ambi@8.29.0'
+    import pkg from '//dev.jspm.io/ambi@8.30.0'
 </script>
 ```
 
@@ -81,9 +81,9 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 <ul><li><code>ambi/source/index.ts</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> source code with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>
 <li><code>ambi/edition-browsers/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for web browsers with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>
-<li><code>ambi</code> aliases <code>ambi/edition-es2017/index.js</code></li>
-<li><code>ambi/edition-es2017/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against <a href="https://en.wikipedia.org/wiki/ECMAScript#8th_Edition_-_ECMAScript_2017" title="ECMAScript ES2017">ES2017</a> for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> with <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a> for modules</li>
-<li><code>ambi/edition-es2017-esm/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against <a href="https://en.wikipedia.org/wiki/ECMAScript#8th_Edition_-_ECMAScript_2017" title="ECMAScript ES2017">ES2017</a> for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li></ul>
+<li><code>ambi</code> aliases <code>ambi/edition-es2022/index.js</code></li>
+<li><code>ambi/edition-es2022/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 10 || 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a> for modules</li>
+<li><code>ambi/edition-es2022-esm/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li></ul>
 
 <!-- /INSTALL -->
 
