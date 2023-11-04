@@ -55,7 +55,7 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/ambi@^8.30.0'
+    import pkg from '//cdn.skypack.dev/ambi@^8.31.0'
 </script>
 ```
 
@@ -63,7 +63,7 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/ambi@^8.30.0'
+    import pkg from '//unpkg.com/ambi@^8.31.0'
 </script>
 ```
 
@@ -71,7 +71,7 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/ambi@8.30.0'
+    import pkg from '//dev.jspm.io/ambi@8.31.0'
 </script>
 ```
 
