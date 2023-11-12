@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "8.32.0",
+  "version": "9.0.0",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "Artistic-2.0",
@@ -81,7 +81,7 @@
     "url": "https://github.com/bevry/ambi.git"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=8"
   },
   "editions": [
     {
@@ -110,7 +110,7 @@
       }
     },
     {
-      "description": "TypeScript compiled against ES2022 for Node.js 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
+      "description": "TypeScript compiled against ES2022 for Node.js 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
       "directory": "edition-es2022",
       "entry": "index.js",
       "tags": [
@@ -120,7 +120,7 @@
         "require"
       ],
       "engines": {
-        "node": "10 || 12 || 14 || 16 || 18 || 20 || 21",
+        "node": "8 || 10 || 12 || 14 || 16 || 18 || 20 || 21",
         "browsers": false
       }
     },
@@ -162,12 +162,12 @@
     "@types/node": "^20.9.0",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
-    "assert-helpers": "^8.4.0",
+    "assert-helpers": "^10.0.0",
     "eslint": "^8.53.0",
     "eslint-config-bevry": "^3.29.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "kava": "^5.17.0",
+    "kava": "3.2.0",
     "prettier": "^3.0.3",
     "projectz": "^2.23.0",
     "surge": "^0.23.1",
