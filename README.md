@@ -54,14 +54,14 @@ Ambi lets you execute any function ambidextrously; providing you the ability to 
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/ambi@^10.2.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/ambi@^10.3.0/edition-deno/index.ts'
 ```
 
 <a href="https://www.skypack.dev" title="Skypack is a JavaScript Delivery Network for modern web apps"><h3>Skypack</h3></a>
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/ambi@^10.2.0'
+    import pkg from '//cdn.skypack.dev/ambi@^10.3.0'
 </script>
 ```
 
@@ -69,7 +69,7 @@ import pkg from 'https://unpkg.com/ambi@^10.2.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/ambi@^10.2.0'
+    import pkg from '//unpkg.com/ambi@^10.3.0'
 </script>
 ```
 
@@ -77,7 +77,7 @@ import pkg from 'https://unpkg.com/ambi@^10.2.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/ambi@10.2.0'
+    import pkg from '//dev.jspm.io/ambi@10.3.0'
 </script>
 ```
 
