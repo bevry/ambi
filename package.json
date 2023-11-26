@@ -209,7 +209,7 @@
   "module": "edition-browsers/index.js",
   "dependencies": {
     "editions": "^6.15.0",
-    "typechecker": "^8.5.0"
+    "typechecker": "^9.0.0"
   },
   "devDependencies": {
     "@bevry/update-contributors": "^1.23.0",
