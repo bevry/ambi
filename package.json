@@ -227,7 +227,7 @@
     "projectz": "^3.3.0",
     "surge": "^0.23.1",
     "typedoc": "^0.25.3",
-    "typescript": "5.2.2",
+    "typescript": "5.3.2",
     "valid-directory": "^4.5.0",
     "valid-module": "^2.5.0"
   },
