@@ -1,6 +1,6 @@
 {
   "name": "ambi",
-  "version": "10.6.0",
+  "version": "10.7.0",
   "description": "Ambi lets you execute any function ambidextrously; providing you the ability to execute any function (be it synchronous, asynchronous, returns, callbacks, promises) as if it returned a promise.",
   "homepage": "https://github.com/bevry/ambi",
   "license": "Artistic-2.0",
@@ -208,15 +208,15 @@
   "browser": "edition-browsers/index.js",
   "module": "edition-browsers/index.js",
   "dependencies": {
-    "editions": "^6.18.0",
-    "typechecker": "^9.1.0"
+    "editions": "^6.19.0",
+    "typechecker": "^9.2.0"
   },
   "devDependencies": {
     "@bevry/update-contributors": "^1.23.0",
     "@types/node": "^20.10.3",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
-    "assert-helpers": "^11.8.0",
+    "assert-helpers": "^11.9.0",
     "eslint": "^8.55.0",
     "eslint-config-bevry": "^5.2.0",
     "eslint-config-prettier": "^9.1.0",
