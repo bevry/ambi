@@ -226,7 +226,7 @@
     "prettier": "^3.1.0",
     "projectz": "^3.4.0",
     "typedoc": "^0.25.4",
-    "typescript": "5.3.2",
+    "typescript": "5.3.3",
     "valid-directory": "^4.6.0",
     "valid-module": "^2.6.0"
   },
