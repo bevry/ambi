@@ -252,7 +252,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
-    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^6.16.0",
     "assert-helpers": "^11.12.0",
     "eslint": "^8.56.0",
